@@ -1,90 +1,142 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Head } from '@inertiajs/react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import AppLayout from '@/Layouts/AppLayout';
 import { useTranslation } from 'react-i18next';
 import Footer from '@/Components/Footer';
 
 const Education = () => {
   const { t } = useTranslation();
+  const { scrollY } = useScroll();
+  const [windowHeight, setWindowHeight] = useState('100vh');
 
-  // Animation variants for improved transitions
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  useEffect(() => {
+    const updateHeight = () => {
+      setWindowHeight(`${window.innerHeight}px`);
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const bgParallax = useTransform(scrollY, [0, 1000], [0, -150]);
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
   };
 
   return (
     <AppLayout>
       <Head title={t("Education - SDG's Center Unsoed")} />
 
-      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#1B3A5B] dark:to-[#132A43]">
+      <main className="bg-gradient-to-b from-gray-50 to-white dark:from-[#1B3A5B] dark:to-[#132A43] overflow-x-hidden">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center py-16 lg:py-24 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-purple-50/30 dark:from-blue-900/20 dark:to-purple-900/20" />
-            <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/20 dark:bg-blue-500/10 rounded-full filter blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/20 dark:bg-purple-500/10 rounded-full filter blur-3xl transform translate-x-1/2 translate-y-1/2" />
-          </div>
+        <section 
+          className="relative flex items-center justify-center overflow-hidden"
+          style={{ minHeight: windowHeight }}
+        >
+          {/* Dynamic Background */}
+          <motion.div
+            className="absolute inset-0 opacity-50"
+            style={{ y: bgParallax }}
+            animate={{
+              background: [
+                'radial-gradient(circle at 20% 20%, rgba(185,77,77,0.05) 0%, transparent 50%)',
+                'radial-gradient(circle at 80% 80%, rgba(185,77,77,0.05) 0%, transparent 50%)',
+                'radial-gradient(circle at 20% 20%, rgba(185,77,77,0.05) 0%, transparent 50%)',
+              ]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
 
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-            >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
               {/* Text Content */}
-              <motion.div variants={itemVariants} className="max-w-2xl">
-                <h1 className="text-4xl md:text-6xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-8 leading-tight">
-                  Education for{' '}
-                  <span className="whitespace-nowrap">Sustainable Development</span>
-                </h1>
-                <p className="text-xl md:text-2xl text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed text-justify">
-                  {t('education.description')}
-                </p>
-              </motion.div>
+<motion.div
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+  className="max-w-2xl mx-auto lg:mx-0"
+>
+  <motion.div
+    initial={{ width: 0 }}
+    animate={{ width: "100px" }}
+    className="h-1 bg-gradient-to-r from-[#B94D4D] to-[#F5E6D3] mb-8 mx-auto lg:mx-0"
+    transition={{ duration: 0.8, delay: 0.2 }}
+  />
+  <motion.div className="space-y-6">
+  <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] leading-tight tracking-tight">
+  Education for{' '}
+  <span className="inline-block">Sustainable Development</span>
+</h1>
+
+    <div className="relative">
+      <p className="text-base sm:text-lg text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed text-justify hyphens-auto
+        after:content-[''] after:block after:h-px after:w-full after:bg-gradient-to-r 
+        after:from-transparent after:via-[#B94D4D]/20 after:to-transparent after:mt-8"
+      >
+        {t('education.description')}
+      </p>
+    </div>
+  </motion.div>
+</motion.div>
 
               {/* Hero Illustration */}
               <motion.div
-                variants={itemVariants}
-                className="relative mx-auto lg:mx-0 w-full max-w-xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="relative max-w-2xl mx-auto w-full"
               >
+                {/* Floating Background Elements */}
                 <motion.div
-                  className="relative"
-                  initial={{ rotate: -5 }}
-                  whileHover={{ rotate: 0 }}
-                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="absolute top-0 left-1/4 w-32 h-32 bg-[#B94D4D]/10 rounded-full blur-2xl" />
+                  <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-[#F5E6D3]/10 rounded-full blur-2xl" />
+                </motion.div>
+
+                {/* Main SVG */}
+                <motion.div
+                  animate={{
+                    y: [-10, 10, -10],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative z-10 w-full h-full px-4 sm:px-0"
                 >
                   <img
                     src="/assets/education.svg"
                     alt="Education Illustration"
-                    className="w-full h-full object-contain relative z-10"
+                    className="w-full h-auto max-h-[60vh] object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#B94D4D]/10 to-[#F5E6D3]/10 rounded-3xl transform rotate-3 scale-95 -z-10" />
                 </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -222,8 +274,10 @@ const Education = () => {
             </motion.div>
           </div>
         </section>
+
+
+        <Footer />
       </main>
-      <Footer />
     </AppLayout>
   );
 };

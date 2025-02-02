@@ -13,7 +13,9 @@ const AboutUs = () => {
   // Dynamic height adjustment for true full screen
   useEffect(() => {
     const updateHeight = () => {
-      setWindowHeight(`${window.innerHeight}px`);
+      // Adjust height calculation to account for mobile navigation
+      const navHeight = window.innerWidth < 640 ? 64 : 0; // 64px for mobile nav
+      setWindowHeight(`calc(${window.innerHeight}px - ${navHeight}px)`);
     };
     updateHeight();
     window.addEventListener('resize', updateHeight);
@@ -47,9 +49,9 @@ const AboutUs = () => {
       <Head title="About Us - SDG's Center Unsoed" />
 
       <main className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#1B3A5B] dark:to-[#152A43] overflow-hidden">
-        {/* Full Screen Hero Section */}
+        {/* Full Screen Hero Section with Mobile Navigation Adjustment */}
         <section 
-          className="relative flex items-center justify-center overflow-hidden"
+          className="relative flex items-center justify-center overflow-hidden pt-16 sm:pt-0"
           style={{ minHeight: windowHeight }}
         >
           {/* Dynamic Background with Parallax */}
@@ -76,7 +78,7 @@ const AboutUs = () => {
               {...fadeInUp}
               className="text-center mb-12 lg:mb-20"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] tracking-tight leading-tight">
                 {t('about.us.title')}
               </h1>
               <motion.div 

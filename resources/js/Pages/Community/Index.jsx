@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Head } from '@inertiajs/react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import AppLayout from '@/Layouts/AppLayout';
@@ -8,15 +8,20 @@ import Footer from '@/Components/Footer';
 const CommunityService = () => {
   const { t } = useTranslation();
   const { scrollY } = useScroll();
+  const [windowHeight, setWindowHeight] = useState('100vh');
 
-  // Smooth scroll animations
-  const headerY = useSpring(
-    useTransform(scrollY, [0, 300], [0, -50]),
-    { stiffness: 100, damping: 30 }
-  );
+  useEffect(() => {
+    const updateHeight = () => {
+      setWindowHeight(`${window.innerHeight}px`);
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
 
-  // Modern fade and slide animations
-  const contentVariants = {
+  const bgParallax = useTransform(scrollY, [0, 1000], [0, -150]);
+
+  const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -28,195 +33,154 @@ const CommunityService = () => {
     }
   };
 
-  // Subtle hover effect
-  const hoverScale = {
-    hover: {
-      scale: 1.02,
-      transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
-  // Modern background decoration
-  const floatingShapes = {
-    animate: {
-      y: [-10, 10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      }
-    }
-  };
-
   return (
     <AppLayout>
       <Head title={t("Community Service - SDG's Center Unsoed")} />
 
-      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#1B3A5B] dark:to-[#132A43] relative overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div 
-            className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-purple-200/10 to-pink-200/10 rounded-full blur-3xl"
-            variants={floatingShapes}
-            animate="animate"
-          />
-          <motion.div 
-            className="absolute bottom-40 left-20 w-96 h-96 bg-gradient-to-tr from-blue-200/10 to-teal-200/10 rounded-full blur-3xl"
-            variants={floatingShapes}
-            animate="animate"
-            transition={{ delay: 1 }}
-          />
-        </div>
-
+      <main className="bg-gradient-to-b from-gray-50 to-white dark:from-[#1B3A5B] dark:to-[#132A43] overflow-x-hidden">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <section 
+          className="relative flex items-center justify-center overflow-hidden"
+          style={{ minHeight: windowHeight }}
+        >
+          {/* Dynamic Background */}
+          <motion.div
+            className="absolute inset-0 opacity-50"
+            style={{ y: bgParallax }}
+            animate={{
+              background: [
+                'radial-gradient(circle at 20% 20%, rgba(185,77,77,0.05) 0%, transparent 50%)',
+                'radial-gradient(circle at 80% 80%, rgba(185,77,77,0.05) 0%, transparent 50%)',
+                'radial-gradient(circle at 20% 20%, rgba(185,77,77,0.05) 0%, transparent 50%)',
+              ]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
+              
+
               {/* Text Content */}
-              <motion.div 
-                className="text-center lg:text-left"
-                variants={contentVariants}
-                initial="hidden"
-                animate="visible"
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-2xl mx-auto lg:mx-0"
               >
-                <motion.h1 
-                  className="text-4xl md:text-6xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-8 leading-tight"
-                  style={{ y: headerY }}
-                >
-                  {t('community.title')}
-                </motion.h1>
-                <motion.p 
-                  className="text-xl text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed mb-8"
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: 0.2 }}
-                >
-                  {t('community.description')}
-                </motion.p>
-                
-                {/* Modern decorative line */}
-                <motion.div 
-                  className="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-8 hidden lg:block"
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 96, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: "100px" }}
+                  className="h-1 bg-gradient-to-r from-[#B94D4D] to-[#F5E6D3] mb-8 mx-auto lg:mx-0"
+                  transition={{ duration: 0.8, delay: 0.2 }}
                 />
+                <motion.div className="space-y-6">
+                  <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] leading-tight tracking-tight">
+                    Community{' '}
+                    <span className="inline-block">Service Program</span>
+                  </h1>
+
+                  <div className="relative">
+                    <p className="text-base sm:text-lg text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed text-justify hyphens-auto
+                      after:content-[''] after:block after:h-px after:w-full after:bg-gradient-to-r 
+                      after:from-transparent after:via-[#B94D4D]/20 after:to-transparent after:mt-8"
+                    >
+                      {t('community.description')}
+                    </p>
+                  </div>
+                </motion.div>
               </motion.div>
 
               {/* Hero Illustration */}
               <motion.div
-                variants={hoverScale}
-                whileHover="hover"
-                className="relative"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="relative max-w-2xl mx-auto w-full"
               >
-                {/* Decorative background for illustration */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-purple-100/20 to-pink-100/20 dark:from-purple-900/20 dark:to-pink-900/20 rounded-3xl"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6 }}
-                />
-                <img
-                  src="/assets/community.svg"
-                  alt="Community Service"
-                  className="w-full h-full object-contain relative z-10"
-                />
+                {/* Floating Background Elements */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="absolute top-0 left-1/4 w-32 h-32 bg-[#B94D4D]/10 rounded-full blur-2xl" />
+                  <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-[#F5E6D3]/10 rounded-full blur-2xl" />
+                </motion.div>
+
+                <motion.div
+                  animate={{
+                    y: [-10, 10, -10],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative z-10 w-full h-full px-4 sm:px-0"
+                >
+                  <img
+                    src="/assets/community.svg"
+                    alt="Community Service Illustration"
+                    className="w-full h-auto max-h-[60vh] object-contain"
+                  />
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Programs Section */}
-        <section className="relative py-24">
-          <motion.div
-            className="container mx-auto px-4 sm:px-6 lg:px-8"
-            variants={contentVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="max-w-3xl mx-auto text-center mb-16"
-              variants={contentVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-5xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-8">
-                {t('community.programs.title')}
-              </h2>
-              <p className="text-lg md:text-xl text-[#1B3A5B]/70 dark:text-[#F5E6D3]/70 leading-relaxed">
-                {t('community.programs.description')}
-              </p>
-              
-              {/* Modern decorative element */}
-              <motion.div 
-                className="h-1 w-24 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mx-auto mt-8"
-                initial={{ width: 0, opacity: 0 }}
-                whileInView={{ width: 96, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              />
-            </motion.div>
+        
 
-            {/* KKN Program */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
-              variants={contentVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.div
-                variants={contentVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl md:text-3xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-4">
-                  {t('community.kkn.title')}
-                </h3>
-                <p className="text-lg text-[#1B3A5B]/70 dark:text-[#F5E6D3]/70 leading-relaxed">
-                  {t('community.kkn.description')}
-                </p>
-              </motion.div>
-              
-              <motion.div
-                variants={hoverScale}
-                whileHover="hover"
-                className="relative"
-              >
-                {/* Decorative background for KKN illustration */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-100/20 to-teal-100/20 dark:from-blue-900/20 dark:to-teal-900/20 rounded-3xl"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6 }}
-                />
-                <img
-                  src="/assets/kkn.jpeg"
-                  alt="KKN Program"
-                  className="w-full h-auto relative z-10"
-                />
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </section>
+        {/* KKN Section */}
+<section className="py-24 bg-gray-50/80 dark:bg-[#1B3A5B]/80 backdrop-blur-lg">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+    >
+      {/* KKN Illustration */}
+      <motion.div 
+        className="relative order-2"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
+      >
+        <img
+          src="/assets/kkn.jpeg"
+          alt="KKN Activities"
+          className="w-full h-full object-cover relative z-10 rounded-3xl"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F5E6D3]/10 to-[#B94D4D]/10 rounded-3xl transform -rotate-3 scale-95 -z-10" />
+      </motion.div>
 
-        {/* Footer with fade-in animation */}
-        <motion.div
-          variants={contentVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <Footer />
-        </motion.div>
+      {/* KKN Content */}
+      <div className="order-1">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-6">
+          {t('community.kkn.title')}
+        </h2>
+        <p className="text-lg text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed mb-8">
+          {t('community.kkn.description')}
+        </p>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+
+        <Footer />
       </main>
     </AppLayout>
   );
