@@ -1,0 +1,306 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": {
+      "title": "About",
+      "about_us": "About Us", 
+      "about_sdgs": "About SDG's"
+    },
+    "education": {
+      "title": "Education",
+      "seminar": "Seminar",
+      "workshop": "Workshop", 
+      "course": "Course",
+      "others": "Others"
+    },
+    "research": {
+      "title": "Research",
+      "mapping": "Mapping",
+      "journal": "SDGs Journal"
+    },
+    "community": {
+      "title": "Community Service",
+      "training": "Training Project",
+      "student": "Student Community"
+    },
+    "publication": {
+      "title": "Publication",
+      "review": "Critical Review",
+      "journal": "SDGs Unsoed Journal" 
+    },
+    "expert": "Our Expert"
+  },
+  "future": {
+    "title": "Future Sustainability",
+    "description": "Around us are many individuals with great ability to create progress in the world. In order to drive progress in the world, we need to make an effort immediately. This platform is used to support existing progress by collaborating, educating, and defining actions to be taken to realize real change.",
+    "features": {
+      "global": {
+        "title": "Global Impact",
+        "description": "Creating worldwide positive change through sustainable development initiatives"
+      },
+      "collaboration": {
+        "title": "Collaboration", 
+        "description": "Building strong partnerships to achieve sustainable development goals"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Developing creative solutions for sustainable future challenges"
+      },
+      "action": {
+        "title": "Action-Oriented",
+        "description": "Taking concrete steps towards achieving sustainable development goals"
+      }
+    }
+  },
+  "sdgs": {
+    "title": "Sustainable Development Goals",
+    "subtitle": "Unsoed Contribution to The SDGs Goal",
+    "description": "Every year, Unsoed will report on its contribution to the global SDGs by identifying activities at Unsoed that are relevant to the SDGs. This reporting will provide a clear perspective on the sustainability goals and help set significant targets.",
+    "view_all": "View All SDGs",
+    "goals": {
+      "1": {
+        "title": "No poverty",
+        "description": "End poverty in all its forms everywhere"
+      },
+      "2": {
+        "title": "Zero hunger",
+        "description": "End hunger, achieve food security and improved nutrition"
+      },
+      "3": {
+        "title": "Good health and well-being",
+        "description": "Ensure healthy lives and promote well-being for all at all ages"
+      },
+      "4": {
+        "title": "Quality education",
+        "description": "Ensure inclusive and equitable quality education"
+      },
+      "5": {
+        "title": "Gender quality",
+        "description": "Achieve gender equality and empower all women and girls"
+      },
+      "6": {
+        "title": "Clean water and sanitation",
+        "description": "Ensure availability and sustainable management of water and sanitation"
+      },
+      "7": {
+        "title": "Affordable and clean energy",
+        "description": "Ensure access to affordable, reliable, sustainable and modern energy"
+      },
+      "8": {
+        "title": "Decent work and economic growth",
+        "description": "Promote sustained, inclusive and sustainable economic growth"
+      },
+      "9": {
+        "title": "Industry, innovation, and infrastructure",
+        "description": "Build resilient infrastructure and promote sustainable industrialization"
+      },
+      "10": {
+        "title": "Reduced inequalities",
+        "description": "Reduce inequality within and among countries"
+      },
+      "11": {
+        "title": "Sustainable cities and communities",
+        "description": "Make cities and human settlements inclusive, safe, resilient and sustainable"
+      },
+      "12": {
+        "title": "Responsible consumption and production",
+        "description": "Ensure sustainable consumption and production patterns"
+      },
+      "13": {
+        "title": "Climate action",
+        "description": "Take urgent action to combat climate change and its impacts"
+      },
+      "14": {
+        "title": "Life below water",
+        "description": "Conserve and sustainably use the oceans, seas and marine resources"
+      },
+      "15": {
+        "title": "Life on land",
+        "description": "Protect, restore and promote sustainable use of terrestrial ecosystems"
+      },
+      "16": {
+        "title": "Peace, justice, and strong institutions",
+        "description": "Promote peaceful and inclusive societies for sustainable development"
+      },
+      "17": {
+        "title": "Partnerships for the goals",
+        "description": "Strengthen the means of implementation and revitalize global partnership"
+      }
+    },
+    "cta": {
+      "learn_more": "Learn more",
+      "view_website": "View UN SDGs Website"
+    }
+  },
+  "footer": {
+    "brand": {
+      "title": "SDGs Center",
+      "subtitle": "Jenderal Soedirman University"
+    },
+    "address": "LPPM Building UNSOED 3rd Floor, Dr. Soeparno Street, Karangwangkal, Purwokerto, Central Java 53122",
+    "quickLinks": {
+      "title": "Quick Links",
+      "home": "Home",
+      "about": "About",
+      "education": {
+        "title": "Education",
+        "seminar": "Seminar",
+        "workshop": "Workshop",
+        "course": "Course",
+        "others": "Others"
+      },
+      "research": {
+        "title": "Research",
+        "mapping": "Mapping",
+        "journal": "SDGs Journal"
+      },
+      "community": {
+        "title": "Community Service",
+        "training": "Training Project",
+        "student": "Student Community"
+      },
+      "publication": {
+        "title": "Publication",
+        "review": "Critical Review",
+        "journal": "SDGs Unsoed Journal"
+      },
+      "expert": "Our Expert"
+    },
+    "connect": {
+      "title": "Connect with Us",
+      "newsletter": {
+        "title": "Subscribe to our newsletter",
+        "placeholder": "Enter your email",
+        "description": "Get the latest updates about our programs and activities"
+      }
+    },
+    "copyright": {
+      "rights": "All Rights Reserved",
+      "privacy": "Privacy Policy", 
+      "terms": "Terms & Conditions"
+    }
+  },
+    "about": {
+      "us": {
+        
+        "title": "About Integrated Beyond Unsoed",
+        "description": {
+          "first": "To facilitate and synergize Unsoed's activities in the fields of education, teaching, and community service (Tridharma), Unsoed is committed to establishing the SDGs Center to explore, collect, develop, and disseminate knowledge that benefits sustainable development and welfare for society.",
+          "inauguration": "Unsoed SDGs Center was then inaugurated by the Ministry of National Development Planning (Bappenas) on December 18, 2024 at Java Heritage Hotel, Purwokerto.",
+          "second": "To achieve the Sustainable Development Goals as a national development goal, the Unsoed SDGs Center plays a role in achieving the Sustainable Development Goals by providing innovations and solutions for SDGs, creating current and future SDGs implementers, showing how to support, adopt, and implement SDGs, and developing cross-sectoral partnerships and leadership as a guide in responding to SDGs."
+        }
+      }
+    },
+    "partnerships": {
+    "title": "Partnerships for Sustainability",
+    "description": "Unsoed partners with various donor agencies, governments, community-based organizations, non-governmental organizations (NGOs), businesses, and other intermediaries to expand its reach and gain benefits to support shared sustainability goals.",
+    "categories": [
+      "Donor Agencies",
+      "Government",
+      "Community Organizations",
+      "NGOs",
+      "Businesses",
+      "Intermediaries"
+    ]
+  },
+  "projects": {
+    "highlights": {
+      "title": "Project Highlights",
+      "description": "Highlighting existing projects at Unsoed by presenting a news list containing information on initiative updates. The newsletters communicate the progress of initiatives that support sustainability goals and tangible results.",
+      "readMore": "Read More",
+      "viewAll": "View All Projects"
+    }
+  },
+  "research": {
+    "mapping": {
+      "meta": {
+        "title": "Research Mapping - SDG's Center Unsoed"
+      },
+      "title": "Research Mapping",
+      "description": "By making a meaningful contribution, Unsoed expands the scope and rationale of its research for development strategy by fully considering the 17 core needs in the Sustainable Development Goals.",
+      "viewResearch": "View Research"
+    },
+    "areas": {
+      "exploration": {
+        "title": "Research Exploration",
+        "description": "Exploring innovative solutions for sustainable development challenges"
+      },
+      "innovation": {
+        "title": "Innovation Development",
+        "description": "Developing new approaches and technologies"
+      },
+      "analysis": {
+        "title": "Data Analysis",
+        "description": "Analyzing impact and effectiveness of initiatives"
+      },
+      "collaboration": {
+        "title": "Research Collaboration",
+        "description": "Building partnerships for shared research goals"
+      }
+    }
+  },
+  "education": {
+    
+    "title": "Education for Sustainable Development",
+    "description": "In order to promote a more just and sustainable society, Unsoed supports education that helps people change their knowledge, skills, values and attitudes. In addition, Unsoed also equips people to meet the needs of each individual through an integrated and balanced approach to sustainable development.",
+    
+    "seminar": {
+      "title": "Seminar",
+      "description": "A meeting that aims to realize sustainable development for university members and the general public."
+    },
+    "workshop": {
+      "title": "Workshop",
+      "description": "A series of gatherings involving many individuals to discuss, learn, and work, which includes individual engagement in realizing sustainable development as an outreach to university members and the general public."
+    },
+    "course": {
+      "title": "Course",
+      "description": "A series of learning conducted over a period of time on knowledge and skills relevant to the goal of realizing sustainable development, both for university members and the general public."
+    }
+    
+  },
+  "community": {
+    
+    "title": "Community Service",
+    "description": "Community service and empowerment programs are an important part of Unsoed. Unsoed has conducted community service activities for students integrated through the Real Work Lecture (KKN) program as well as various services carried out which aim to achieve sustainable goals.",
+    "programs": {
+      "title": "Our Programs",
+      "description": "Discover how we engage with and empower communities through various sustainable development initiatives."
+    },
+    "kkn": {
+      "title": "Real Work Lecture (KKN)",
+      "description": "An integrated program where students engage directly with communities, implementing sustainable development practices and solutions."
+    }
+  },
+  "publication": {
+    
+    "title": "SDGs Publications",
+    "description": "Unsoed SDGs Publication as a forum needed to be able to support SDGs in Indonesia in terms of innovation and sustainable implementation of SDGs in society by presenting publications that contain information about the linkage of existing activities with sustainability goals and tangible results.",
+    "mapping": {
+      "title": "SDGs Implementation Mapping",
+      "description": "Explore how Unsoed maps and aligns university activities with SDGs objectives and implementation."
+    },
+    "activities": {
+      "course": {
+        "title": "Course Integration",
+        "description": "Integration of SDGs content in courses and KKN programs"
+      },
+      "ownership": {
+        "title": "SDGs Ownership",
+        "description": "Building a sense of ownership towards SDGs implementation"
+      },
+      "priorities": {
+        "title": "Strategic Planning",
+        "description": "Identifying priorities, opportunities, and global action plans"
+      },
+      "internalization": {
+        "title": "SDGs Internalization",
+        "description": "Ensuring continuous SDGs internalization across university elements"
+      }
+    }
+  },
+  "expert": {
+    
+    "title": "Our Experts",
+    "description": "Meet our dedicated team of experts working towards sustainable development goals."
+  }
+}

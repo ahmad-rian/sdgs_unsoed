@@ -1,0 +1,304 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": {
+      "title": "Tentang",
+      "about_us": "Tentang Kami",
+      "about_sdgs": "Tentang SDGS"
+    },
+    "education": {
+      "title": "Pendidikan",
+      "seminar": "Seminar", 
+      "workshop": "Workshop",
+      "course": "Kursus",
+      "others": "Lainnya"
+    },
+    "research": {
+      "title": "Penelitian",
+      "mapping": "Pemetaan",
+      "journal": "Jurnal SDGs"
+    },
+    "community": {
+      "title": "Pengabdian Masyarakat",
+      "training": "Proyek Pelatihan",
+      "student": "Komunitas Mahasiswa"
+    },
+    "publication": {
+      "title": "Publikasi",
+      "review": "Telaah Kritis",
+      "journal": "Jurnal SDGs Unsoed"
+    },
+    "expert": "Pakar Kami"
+  },
+  "future": {
+    "title": "Keberlanjutan Masa Depan",
+    "description": "Di sekitar kita terdapat banyak individu dengan kemampuan yang hebat untuk menciptakan kemajuan di dunia. Dalam mendorong kemajuan di dunia, kita perlu melakukan sebuah usaha dengan segera. Platform ini digunakan dalam mendukung kemajuan yang ada dengan berkolaborasi, mendidik, dan menentukan tindakan yang akan dilakukan untuk mewujudkan perubahan yang nyata.",
+    "features": {
+      "global": {
+        "title": "Dampak Global",
+        "description": "Menciptakan perubahan positif di seluruh dunia melalui inisiatif pembangunan berkelanjutan"
+      },
+      "collaboration": {
+        "title": "Kolaborasi",
+        "description": "Membangun kemitraan yang kuat untuk mencapai tujuan pembangunan berkelanjutan"
+      },
+      "innovation": {
+        "title": "Inovasi", 
+        "description": "Mengembangkan solusi kreatif untuk tantangan masa depan yang berkelanjutan"
+      },
+      "action": {
+        "title": "Berorientasi Aksi",
+        "description": "Mengambil langkah nyata menuju pencapaian tujuan pembangunan berkelanjutan"
+      }
+    }
+  },
+  "sdgs": {
+    "title": "Tujuan Pembangunan Berkelanjutan",
+    "subtitle": "Kontribusi Unsoed terhadap Tujuan SDGs",
+    "description": "Setiap tahun, Unsoed akan melaporkan mengenai kontribusi terhadap SDGs global dengan melakukan identifikasi terhadap kegiatan-kegiatan di Unsoed yang relevan dengan SDGs. Pelaporan ini akan memberikan perspektif yang jelas terkait tujuan keberlanjutan dan membantu menetapkan target yang signifikan.",
+    "view_all": "Lihat Semua SDGs",
+    "goals": {
+      "1": {
+        "title": "Tidak ada kemiskinan",
+        "description": "Mengakhiri kemiskinan dalam segala bentuk di manapun"
+      },
+      "2": {
+        "title": "Tidak ada kelaparan",
+        "description": "Mengakhiri kelaparan, mencapai ketahanan pangan dan nutrisi yang lebih baik"
+      },
+      "3": {
+        "title": "Kesehatan dan kesejahteraan yang baik",
+        "description": "Memastikan kehidupan yang sehat dan mendukung kesejahteraan untuk semua usia"
+      },
+      "4": {
+        "title": "Pendidikan yang berkualitas",
+        "description": "Memastikan pendidikan yang inklusif dan berkualitas setara"
+      },
+      "5": {
+        "title": "Kualitas gender",
+        "description": "Mencapai kesetaraan gender dan memberdayakan semua perempuan"
+      },
+      "6": {
+        "title": "Air bersih dan sanitasi",
+        "description": "Memastikan ketersediaan dan pengelolaan air bersih dan sanitasi yang berkelanjutan"
+      },
+      "7": {
+        "title": "Energi yang terjangkau dan bersih",
+        "description": "Memastikan akses terhadap energi yang terjangkau, andal, berkelanjutan dan modern"
+      },
+      "8": {
+        "title": "Pekerjaan yang layak dan pertumbuhan ekonomi",  
+        "description": "Mendukung pertumbuhan ekonomi yang berkelanjutan dan inklusif"
+      },
+      "9": {
+        "title": "Industri, inovasi, dan infrastruktur",
+        "description": "Membangun infrastruktur yang tangguh dan mendukung industrialisasi berkelanjutan"
+      },
+      "10": {
+        "title": "Berkurangnya ketidaksetaraan",
+        "description": "Mengurangi ketimpangan di dalam dan antar negara"
+      },
+      "11": {
+        "title": "Kota dan masyarakat yang berkelanjutan",
+        "description": "Menjadikan kota dan permukiman inklusif, aman, tangguh dan berkelanjutan"
+      },
+      "12": {
+        "title": "Konsumsi dan produksi yang bertanggung jawab",
+        "description": "Memastikan pola konsumsi dan produksi yang berkelanjutan"
+      },
+      "13": {
+        "title": "Aksi iklim",
+        "description": "Mengambil tindakan mendesak untuk memerangi perubahan iklim dan dampaknya"
+      },
+      "14": {
+        "title": "Kehidupan di bawah air",
+        "description": "Melestarikan dan memanfaatkan secara berkelanjutan sumber daya kelautan"
+      },
+      "15": {
+        "title": "Kehidupan di darat",
+        "description": "Melindungi, memulihkan dan mendukung penggunaan berkelanjutan ekosistem darat"
+      },
+      "16": {
+        "title": "Perdamaian, keadilan, dan institusi yang kuat",
+        "description": "Mendukung masyarakat yang damai dan inklusif untuk pembangunan berkelanjutan"
+      },
+      "17": {
+        "title": "Kemitraan untuk mencapai tujuan",
+        "description": "Memperkuat sarana implementasi dan merevitalisasi kemitraan global"
+      }
+    },
+    "cta": {
+      "learn_more": "Pelajari lebih lanjut",
+      "view_website": "Kunjungi Website UN SDGs"
+    }
+  },
+  "footer": {
+    "brand": {
+      "title": "SDGs Center",
+      "subtitle": "Universitas Jenderal Soedirman"
+    },
+    "address": "Gedung LPPM UNSOED Lt. 3, Jl. Dr. Soeparno Karangwangkal, Purwokerto, Jawa Tengah 53122",
+    "quickLinks": {
+      "title": "Tautan Cepat",
+      "home": "Beranda",
+      "about": "Tentang",
+      "education": {
+        "title": "Pendidikan",
+        "seminar": "Seminar",
+        "workshop": "Workshop", 
+        "course": "Kursus",
+        "others": "Lainnya"
+      },
+      "research": {
+        "title": "Penelitian",
+        "mapping": "Pemetaan",
+        "journal": "Jurnal SDGs"
+      },
+      "community": {
+        "title": "Pengabdian Masyarakat", 
+        "training": "Proyek Pelatihan",
+        "student": "Komunitas Mahasiswa"
+      },
+      "publication": {
+        "title": "Publikasi",
+        "review": "Telaah Kritis",
+        "journal": "Jurnal SDGs Unsoed"
+      },
+      "expert": "Pakar Kami"
+    },
+    "connect": {
+      "title": "Terhubung dengan Kami",
+      "newsletter": {
+        "title": "Berlangganan newsletter kami",
+        "placeholder": "Masukkan email Anda",
+        "description": "Dapatkan update terbaru tentang program dan kegiatan kami"
+      }
+    },
+    "copyright": {
+      "rights": "Hak Cipta Dilindungi",
+      "privacy": "Kebijakan Privasi",
+      "terms": "Syarat & Ketentuan"
+    }
+  },
+    "about": {
+      "us": {
+        
+        "title": "About Integrated Beyond Unsoed",
+        "description": {
+          "first": "Untuk memfasilitasi dan mensinergikan kegiatan Unsoed di bidang pendidikan, pengajaran, dan pengabdian masyarakat (Tridharma), Unsoed berkomitmen untuk mendirikan SDGs Center untuk melakukan eksplorasi, mengumpulkan, mengembangkan, dan menyebarkan pengetahuan yang menguntungkan pembangunan dan kesejahteraan berkelanjutan bagi masyarakat.",
+          "inauguration": "SDGs Center Unsoed kemudian diresmikan oleh Kementerian Perencanaan Pembangunan Nasional (Bappenas) pada tanggal 18 Desember 2024 di Hotel Java Heritage, Purwokerto.",
+          "second": "Untuk mencapai tujuan pembangunan berkelanjutan sebagai tujuan pembangunan nasional, Pusat SDGs Unsoed berperan dalam pencapaian tujuan pembangunan yang berkelanjutan dengan menyediakan inovasi dan solusi untuk SDGs, menciptakan pelaksana SDGs saat ini dan di masa mendatang, menunjukkan bagaimana mendukung, mengadopsi, dan mengimplementasikan SDGs, dan mengembangkan kemitraan dan kepemimpinan lintas sektoral sebagai panduan dalam merespon SDGs."
+        }
+      }
+    },
+    "partnerships": {
+    "title": "Kemitraan untuk Keberlanjutan",
+    "description": "Unsoed bermitra dengan berbagai lembaga donor, pemerintah, organisasi berbasis masyarakat, lembaga swadaya masyarakat (LSM), bisnis, dan perantara lainnya untuk memperluas jangkauan dan mendapatkan manfaat untuk mendukung tujuan keberlanjutan bersama.",
+    "categories": [
+      "Lembaga Donor",
+      "Pemerintah",
+      "Organisasi Masyarakat",
+      "LSM",
+      "Bisnis",
+      "Perantara"
+    ]
+  },
+  "projects": {
+    "highlights": {
+      "title": "Sorotan Proyek",
+      "description": "Menyorot proyek yang ada di Unsoed dengan menyajikan daftar berita yang berisi informasi mengenai pembaruan inisiatif. Berita-berita tersebut mengkomunikasikan kemajuan inisiatif yang mendukung tujuan keberlanjutan dan hasil-hasil yang nyata.",
+      "readMore": "Baca Selengkapnya",
+      "viewAll": "Lihat Semua Proyek"
+    }
+  },
+  "research": {
+    "mapping": {
+      "meta": {
+        "title": "Pemetaan Penelitian - SDG's Center Unsoed"
+      },
+      "title": "Pemetaan Penelitian",
+      "description": "Dengan memberikan kontribusi yang berarti, Unsoed memperluas cakupan dan dasar pemikiran dari strategi penelitian untuk pembangunan dengan mempertimbangkan secara penuh 17 kebutuhan inti dalam tujuan pembangunan berkelanjutan.",
+      "viewResearch": "Lihat Penelitian"
+    },
+    "areas": {
+      "exploration": {
+        "title": "Eksplorasi Penelitian",
+        "description": "Mengeksplorasi solusi inovatif untuk tantangan pembangunan berkelanjutan"
+      },
+      "innovation": {
+        "title": "Pengembangan Inovasi",
+        "description": "Mengembangkan pendekatan dan teknologi baru"
+      },
+      "analysis": {
+        "title": "Analisis Data",
+        "description": "Menganalisis dampak dan efektivitas inisiatif"
+      },
+      "collaboration": {
+        "title": "Kolaborasi Penelitian",
+        "description": "Membangun kemitraan untuk tujuan penelitian bersama"
+      }
+    }
+  },
+  "education": {
+    
+    "title": "Pendidikan untuk Pembangunan Berkelanjutan",
+    "description": "Dalam rangka mempromosikan masyarakat yang lebih adil dan berkelanjutan, Unsoed mendukung pendidikan yang membantu masyarakat pada perubahan pengetahuan, kemampuan, nilai, dan sikap. Selain itu, Unsoed juga membekali masyarakat untuk memenuhi kebutuhan tiap individu melalui pendekatan yang terintegrasi dan seimbang dalam pembangunan berkelanjutan.",
+    "seminar": {
+      "title": "Seminar",
+      "description": "Sebuah pertemuan yang bertujuan mewujudkan pembangunan yang berkelanjutan untuk anggota universitas dan Masyarakat umum."
+    },
+    "workshop": {
+      "title": "Workshop",
+      "description": "Serangkaian pertemuan yang melibatkan banyak individu untuk melakukan diskusi, belajar, dan bekerja, yang mencakup keterlibatan individu dalam mewujudkan pembangunan yang berkelanjutan sebagai penjangkauan untuk anggota universitas dan masyarakat umum."
+    },
+    "course": {
+      "title": "Course",
+      "description": "Serangkaian pembelajaran yang dilakukan dalam periode waktu tertentu mengenai pengetahuan dan keterampilan yang relevan dengan tujuan mewujudkan pembangunan yang berkelanjutan, baik untuk anggota universitas maupun masyarakat umum."
+    }
+  },
+  "community": {
+    
+    "title": "Pengabdian Masyarakat",
+    "description": "Program pengabdian dan pemberdayaan masyarakat menjadi suatu bagian yang penting dari Unsoed. Unsoed telah melakukan kegiatan pengabdian kepada masyarakat bagi mahasiswa yang diintegrasikan melalui program Kuliah Kerja Nyata (KKN) serta berbagai pengabdian yang dilakukan yang bertujuan untuk mencapai tujuan berkelanjutan.",
+    "programs": {
+      "title": "Program Kami",
+      "description": "Temukan bagaimana kami terlibat dan memberdayakan masyarakat melalui berbagai inisiatif pembangunan berkelanjutan."
+    },
+    "kkn": {
+      "title": "Kuliah Kerja Nyata (KKN)",
+      "description": "Program terintegrasi dimana mahasiswa terlibat langsung dengan masyarakat, mengimplementasikan praktik dan solusi pembangunan berkelanjutan."
+    }
+  },
+  "publication": {
+    
+    "title": "Publikasi SDGs",
+    "description": "Unsoed SDGs Publication sebagai wadah yang diperlukan untuk dapat mendukung SDGs di Indonesia dalam hal inovasi dan implementasi SDGs yang berkelanjutan di masyarakat dengan menyajikan publikasi yang berisi informasi mengenai keterkaitan kegiatan yang ada dengan tujuan keberlanjutan dan hasil-hasil yang nyata.",
+    "mapping": {
+      "title": "Pemetaan Implementasi SDGs",
+      "description": "Jelajahi bagaimana Unsoed memetakan dan menyelaraskan kegiatan universitas dengan tujuan dan implementasi SDGs."
+    },
+    "activities": {
+      "course": {
+        "title": "Integrasi Mata Kuliah",
+        "description": "Penyisipan muatan SDGs dalam mata kuliah dan program KKN"
+      },
+      "ownership": {
+        "title": "Kepemilikan SDGs",
+        "description": "Membangun rasa kepemilikan terhadap implementasi SDGs"
+      },
+      "priorities": {
+        "title": "Perencanaan Strategis",
+        "description": "Mengidentifikasi prioritas, peluang, dan rencana aksi global"
+      },
+      "internalization": {
+        "title": "Internalisasi SDGs",
+        "description": "Memastikan internalisasi SDGs ke seluruh elemen di universitas secara berkelanjutan"
+      }
+    }
+  },
+  "expert": {
+    
+    "title": "Pakar Kami",
+    "description": "Kenali tim ahli kami yang berdedikasi untuk tujuan pembangunan berkelanjutan."
+  }
+ }
