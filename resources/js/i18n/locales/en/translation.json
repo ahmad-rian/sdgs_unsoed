@@ -28,6 +28,11 @@
       "review": "Critical Review",
       "journal": "SDGs Unsoed Journal" 
     },
+    "media": {
+      "title": "Media",
+      "article": "Articles",
+      "news": "News"
+    },
     "expert": "Our Expert"
   },
   "future": {
@@ -302,5 +307,171 @@
     
     "title": "Our Experts",
     "description": "Meet our dedicated team of experts working towards sustainable development goals."
-  }
+  },
+  "seminar": {
+      "title": "SDGs Educational Seminar",
+      "description": "Join our comprehensive seminar series designed to deepen your understanding of Sustainable Development Goals (SDGs). Through interactive discussions with leading experts, academics, and practitioners, you'll gain valuable insights and practical knowledge for implementing sustainable development initiatives.",
+      "highlights": {
+        "title": "What You'll Get",
+        "experts": "Learn directly from leading SDG experts and practitioners with real-world experience in sustainable development",
+        "interactive": "Engage in dynamic discussions and hands-on workshops that bring SDG concepts to life",
+        "insights": "Gain deep insights into global sustainability challenges and innovative solutions",
+        "networking": "Connect with a diverse community of professionals, academics, and change-makers"
+      },
+      "topics": {
+        "title": "Key Topics",
+        "sustainability": {
+          "title": "Sustainable Development Fundamentals",
+          "description": "Master the core principles and practices of sustainable development, including environmental stewardship, social equity, and economic viability"
+        },
+        "implementation": {
+          "title": "SDG Implementation Strategies",
+          "description": "Learn practical approaches and best practices for implementing SDGs across different sectors and organizational contexts"
+        },
+        "innovation": {
+          "title": "Innovation for Sustainability",
+          "description": "Explore cutting-edge solutions and innovative approaches to addressing sustainable development challenges"
+        }
+      }
+    },
+    "workshop": {
+      "title": "Practical SDGs Workshop",
+      "description": "Our workshops are designed to provide hands-on skills in supporting SDG achievement. Through interactive sessions, participants learn to implement innovative and sustainable solutions across various fields, from renewable energy to inclusive education and local economic empowerment.",
+      "focus": {
+        "title": "Focus Areas",
+        "renewable": {
+          "title": "Renewable Energy",
+          "description": "Learn practical approaches to implementing renewable energy solutions and sustainable resource management"
+        },
+        "education": {
+          "title": "Inclusive Education",
+          "description": "Develop strategies for creating inclusive educational environments and programs that leave no one behind"
+        },
+        "economic": {
+          "title": "Local Economic Empowerment",
+          "description": "Master techniques for strengthening local economies and creating sustainable livelihood opportunities"
+        }
+      },
+      "methods": {
+        "title": "Our Approach",
+        "interactive": "Hands-on learning sessions that engage participants in real-world problem solving",
+        "practical": "Focus on practical skills and implementable solutions that can be applied immediately",
+        "collaborative": "Group activities and peer learning to enhance knowledge sharing and networking",
+        "innovative": "Introduction to innovative tools and methodologies for sustainable development"
+      }
+    },
+    
+    "course": {
+      "title": "SDGs Course Program",
+      "description": "Our comprehensive course program offers in-depth learning on SDGs through a balanced theoretical and practical approach. Participants gain extensive knowledge and explore relevant case studies to understand the challenges and opportunities in achieving sustainable development goals.",
+      "approach": {
+        "title": "Learning Approach",
+        "theoretical": "Strong theoretical foundation in sustainable development principles and frameworks",
+        "practical": "Hands-on exercises and real-world applications of SDG concepts",
+        "casestudies": "Analysis of relevant case studies from various sectors and regions",
+        "comprehensive": "Comprehensive coverage of all 17 SDGs and their interconnections"
+      },
+      "modules": {
+        "title": "Course Modules",
+        "foundations": {
+          "title": "SDG Foundations",
+          "description": "Introduction to sustainable development concepts, history of SDGs, and key frameworks"
+        },
+        "implementation": {
+          "title": "Implementation Strategies",
+          "description": "Practical approaches to implementing SDGs in different contexts and sectors"
+        },
+        "advanced": {
+          "title": "Advanced Applications",
+          "description": "Specialized topics, emerging trends, and innovation in sustainable development"
+        }
+      },
+      "outcomes": {
+        "title": "Learning Outcomes",
+        "knowledge": "Deep understanding of SDGs and sustainable development principles",
+        "skills": "Practical skills for implementing and measuring SDG progress",
+        "network": "Access to a network of sustainability professionals and experts",
+        "certification": "Professional certification recognizing your expertise in SDGs"
+      }
+    },
+    "others": {
+      "title": "Supporting SDGs Activities",
+      "description": "Various activities such as social campaigns, community service programs, and collaborative projects form an integral part of our efforts to support SDGs. Through concrete actions, we aim to create positive impacts on the environment and society while encouraging active involvement in achieving more inclusive and sustainable development.",
+      "campaigns": {
+        "title": "Social Campaigns",
+        "awareness": {
+          "title": "Raising Awareness",
+          "description": "Conducting campaigns to increase public awareness about SDGs and sustainable development issues"
+        },
+        "engagement": {
+          "title": "Community Engagement",
+          "description": "Engaging communities through participatory activities and social media campaigns"
+        },
+        "impact": {
+          "title": "Impact Creation",
+          "description": "Designing campaigns that create measurable social and environmental impact"
+        },
+        "collaboration": {
+          "title": "Collaborative Action",
+          "description": "Working with various stakeholders to amplify campaign reach and effectiveness"
+        }
+      }
+    },
+    "training": {
+      "title": "Training & Project Program",
+      "description": "Our training and project program is designed to equip communities with practical skills and innovative solutions that support the achievement of SDGs. Through an action-based approach, participants engage in sustainable projects that create direct impact across local economic empowerment, environmental management, and education quality improvement.",
+      "programs": {
+        "title": "Training Programs",
+        "economic": {
+          "title": "Economic Empowerment",
+          "description": "Develop practical skills for local economic development, entrepreneurship, and sustainable business practices"
+        },
+        "environmental": {
+          "title": "Environmental Management",
+          "description": "Learn effective approaches to environmental conservation, resource management, and sustainable practices"
+        },
+        "education": {
+          "title": "Education Enhancement",
+          "description": "Master techniques for improving education quality and implementing inclusive learning programs"
+        }
+      },
+      "approach": {
+        "title": "Action-Based Approach",
+        "handson": {
+          "title": "Hands-on Learning",
+          "description": "Direct engagement with real-world projects and practical implementation of solutions"
+        },
+        "mentoring": {
+          "title": "Expert Mentoring",
+          "description": "Guidance from experienced professionals throughout project development and implementation"
+        },
+        "collaboration": {
+          "title": "Community Collaboration",
+          "description": "Working together with local communities and stakeholders to ensure project relevance and sustainability"
+        },
+        "impact": {
+          "title": "Impact Focused",
+          "description": "Emphasis on creating measurable positive changes in target communities"
+        }
+      },
+      "outcomes": {
+        "title": "Project Outcomes",
+        "skills": "Participants gain practical skills and experience in implementing sustainable development initiatives",
+        "projects": "Successfully completed community projects with measurable positive impacts",
+        "network": "Development of strong networks and partnerships with various stakeholders",
+        "impact": "Long-term positive changes in community well-being and environmental sustainability"
+      }
+    },
+    "student": {
+      "title": "Student Community",
+      "description": "The student community plays an active role in supporting SDGs through various social, educational, and advocacy initiatives. With the spirit of collaboration, students can create positive movements that focus on global issues such as educational equality, public health, and environmental preservation, and build networks that contribute to sustainable development."
+    },
+    "review": {
+      "title": "Critical Reviews",
+      "description": "Critical review-based publications play a role in exploring global issues related to the SDGs through in-depth analysis and academic perspectives. With a reflective and data-driven approach, these critical reviews aim to identify challenges, evaluate policies, and offer innovative solutions to support sustainable development."
+    },
+    "journal": {
+      "title": "Scientific Journals",
+      "description": "Scientific journal publications are an important platform for disseminating research results that contribute to the achievement of SDGs. Through evidence-based studies and scientific methods, the journal supports the development of knowledge, policies, and best practices that can be applied in various sectors to achieve sustainable development goals."
+    }
 }

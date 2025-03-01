@@ -5,7 +5,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useTranslation } from 'react-i18next';
 import Footer from '@/Components/Footer';
 
-const Education = () => {
+const StudentCommunity = () => {
   const { t } = useTranslation();
   const { scrollY } = useScroll();
   const [windowHeight, setWindowHeight] = useState('100vh');
@@ -21,21 +21,9 @@ const Education = () => {
 
   const bgParallax = useTransform(scrollY, [0, 1000], [0, -150]);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
   return (
     <AppLayout>
-      <Head title={t("Education - SDG's Center Unsoed")} />
+      <Head title={t("Student Community - SDG's Center Unsoed")} />
 
       <main className="bg-gradient-to-b from-gray-50 to-white dark:from-[#1B3A5B] dark:to-[#132A43] overflow-x-hidden">
         {/* Hero Section */}
@@ -64,34 +52,32 @@ const Education = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
               {/* Text Content */}
-<motion.div
-  initial={{ opacity: 0, x: -20 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8 }}
-  className="max-w-2xl mx-auto lg:mx-0"
->
-  <motion.div
-    initial={{ width: 0 }}
-    animate={{ width: "100px" }}
-    className="h-1 bg-gradient-to-r from-[#B94D4D] to-[#F5E6D3] mb-8 mx-auto lg:mx-0"
-    transition={{ duration: 0.8, delay: 0.2 }}
-  />
-  <motion.div className="space-y-6">
-  <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] leading-tight tracking-tight">
-  Education for{' '}
-  <span className="inline-block">Sustainable Development</span>
-</h1>
-
-    <div className="relative">
-      <p className="text-base sm:text-lg text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed text-justify hyphens-auto
-        after:content-[''] after:block after:h-px after:w-full after:bg-gradient-to-r 
-        after:from-transparent after:via-[#B94D4D]/20 after:to-transparent after:mt-8"
-      >
-        {t('education.description')}
-      </p>
-    </div>
-  </motion.div>
-</motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-2xl mx-auto lg:mx-0"
+              >
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: "100px" }}
+                  className="h-1 bg-gradient-to-r from-[#B94D4D] to-[#F5E6D3] mb-8 mx-auto lg:mx-0"
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                />
+                <motion.div className="space-y-6">
+                  <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] leading-tight tracking-tight">
+                    {t('student.title')}
+                  </h1>
+                  <div className="relative">
+                    <p className="text-base sm:text-lg text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed text-justify hyphens-auto
+                      after:content-[''] after:block after:h-px after:w-full after:bg-gradient-to-r 
+                      after:from-transparent after:via-[#B94D4D]/20 after:to-transparent after:mt-8"
+                    >
+                      {t('student.description')}
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
 
               {/* Hero Illustration */}
               <motion.div
@@ -100,7 +86,6 @@ const Education = () => {
                 transition={{ duration: 1 }}
                 className="relative max-w-2xl mx-auto w-full"
               >
-                {/* Floating Background Elements */}
                 <motion.div
                   className="absolute inset-0"
                   animate={{
@@ -117,7 +102,6 @@ const Education = () => {
                   <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-[#F5E6D3]/10 rounded-full blur-2xl" />
                 </motion.div>
 
-                {/* Main SVG */}
                 <motion.div
                   animate={{
                     y: [-10, 10, -10],
@@ -130,8 +114,8 @@ const Education = () => {
                   className="relative z-10 w-full h-full px-4 sm:px-0"
                 >
                   <img
-                    src="/assets/education.svg"
-                    alt="Education Illustration"
+                    src="/assets/student.svg"
+                    alt="Student Community Illustration"
                     className="w-full h-auto max-h-[60vh] object-contain"
                   />
                 </motion.div>
@@ -140,13 +124,10 @@ const Education = () => {
           </div>
         </section>
 
-        
-
-
         <Footer />
       </main>
     </AppLayout>
   );
 };
 
-export default Education;
+export default StudentCommunity;

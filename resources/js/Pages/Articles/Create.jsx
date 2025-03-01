@@ -42,7 +42,7 @@ export default function Create({ auth }) {
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">Create Article</h2>
                     <Link
                         href={route('articles.index')}
-                        className="px-4 py-2 text-indigo-600 text-sm font-medium hover:text-indigo-500"
+                        className="px-4 py-2 text-[#B94D4D] text-sm font-medium hover:text-[#943D3D] transition-colors"
                     >
                         Back to Articles
                     </Link>
@@ -53,12 +53,12 @@ export default function Create({ auth }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm rounded-lg">
+                    <div className="bg-white overflow-hidden shadow-lg rounded-xl border border-gray-100">
                         <form onSubmit={handleSubmit} className="p-8">
                             <div className="space-y-6">
                                 {/* Title Input */}
                                 <div>
-                                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="title" className="block text-sm font-semibold text-gray-900 mb-2">
                                         Title
                                     </label>
                                     <input
@@ -66,14 +66,17 @@ export default function Create({ auth }) {
                                         id="title"
                                         value={data.title}
                                         onChange={(e) => setData('title', e.target.value)}
-                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        className="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 
+                                        rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#B94D4D]/20 
+                                        focus:border-[#B94D4D] transition-all text-gray-900"
+                                        placeholder="Enter article title"
                                     />
                                     <InputError message={errors.title} className="mt-2" />
                                 </div>
 
                                 {/* Content Textarea */}
                                 <div>
-                                    <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="content" className="block text-sm font-semibold text-gray-900 mb-2">
                                         Content
                                     </label>
                                     <textarea
@@ -81,41 +84,56 @@ export default function Create({ auth }) {
                                         rows={8}
                                         value={data.content}
                                         onChange={(e) => setData('content', e.target.value)}
-                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        className="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 
+                                        rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#B94D4D]/20 
+                                        focus:border-[#B94D4D] transition-all text-gray-900 resize-none"
+                                        placeholder="Write your article content here"
                                     />
                                     <InputError message={errors.content} className="mt-2" />
                                 </div>
 
                                 {/* Image Upload */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">Image</label>
+                                    <label className="block text-sm font-semibold text-gray-900 mb-2">Image</label>
                                     <div className="mt-1 flex items-center">
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={handleImageChange}
-                                            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                                        />
+                                        <div className="w-full">
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleImageChange}
+                                                className="block w-full text-sm text-gray-500 
+                                                file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 
+                                                file:text-sm file:font-medium file:bg-[#B94D4D]/10 file:text-[#B94D4D] 
+                                                hover:file:bg-[#B94D4D]/20 transition-all cursor-pointer
+                                                border border-gray-200 rounded-lg"
+                                            />
+                                        </div>
                                     </div>
                                     <InputError message={errors.image} className="mt-2" />
                                     
                                     {imagePreview && (
-                                        <div className="mt-4">
-                                            <img
-                                                src={imagePreview}
-                                                alt="Preview"
-                                                className="max-w-xs rounded-lg shadow-sm"
-                                            />
+                                        <div className="mt-4 relative group">
+                                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-gray-50 
+                                            shadow-sm">
+                                                <img
+                                                    src={imagePreview}
+                                                    alt="Preview"
+                                                    className="w-full h-48 object-cover"
+                                                />
+                                            </div>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Submit Button */}
-                                <div className="flex justify-end">
+                                <div className="flex justify-end pt-4">
                                     <button
                                         type="submit"
                                         disabled={processing}
-                                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="px-6 py-3 bg-[#B94D4D] text-white font-medium rounded-lg
+                                        hover:bg-[#943D3D] focus:outline-none focus:ring-2 focus:ring-[#B94D4D]/50
+                                        focus:ring-offset-2 transform hover:scale-[0.98] transition-all
+                                        shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
                                         {processing ? 'Creating...' : 'Create Article'}
                                     </button>

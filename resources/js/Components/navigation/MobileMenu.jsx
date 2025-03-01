@@ -3,10 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@inertiajs/react';
 import { X } from 'lucide-react';
 import MobileNavItem from './MobileNavItem';
-import ThemeToggle from '../ThemeToggle';
-import LanguageSelector from '../LanguageSelector';
 
-// Enhanced overlay animation
 const overlayVariants = {
   hidden: { 
     opacity: 0,
@@ -30,7 +27,6 @@ const overlayVariants = {
   }
 };
 
-// Enhanced menu animation
 const menuVariants = {
   hidden: { 
     x: "-100%", 
@@ -45,9 +41,7 @@ const menuVariants = {
       type: "spring",
       damping: 27,
       stiffness: 280,
-      mass: 0.8,
-      when: "beforeChildren",
-      staggerChildren: 0.1
+      mass: 0.8
     }
   },
   exit: { 
@@ -58,14 +52,12 @@ const menuVariants = {
       type: "spring",
       damping: 27,
       stiffness: 280,
-      mass: 0.8,
-      when: "afterChildren",
-      staggerChildren: 0.05
+      mass: 0.8
     }
   }
 };
 
-const MobileMenu = ({ isOpen, setIsOpen, menuItems, activeItems, theme }) => {
+const MobileMenu = ({ isOpen, setIsOpen, menuItems, theme }) => {
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
@@ -85,19 +77,20 @@ const MobileMenu = ({ isOpen, setIsOpen, menuItems, activeItems, theme }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`fixed top-0 left-0 h-screen w-72 z-50 
+            className={`fixed top-0 left-0 h-screen w-80 z-50 
               overflow-y-auto border-r shadow-lg
               ${theme === 'dark'
                 ? 'bg-gray-900/95 border-gray-800'
                 : 'bg-white/95 border-gray-200'}
               backdrop-blur-md`}
           >
-            <div className={`sticky top-0 z-10 border-b
+            {/* Header with Logo */}
+            <div className={`sticky top-0 z-10 p-4 border-b
               ${theme === 'dark'
                 ? 'bg-gray-900/95 border-gray-800'
                 : 'bg-white/95 border-gray-200'}
               backdrop-blur-md`}>
-              <div className="flex items-center justify-between p-4">
+              <div className="flex items-center justify-between">
                 <Link 
                   href="/" 
                   className="flex items-center gap-3" 
@@ -106,10 +99,10 @@ const MobileMenu = ({ isOpen, setIsOpen, menuItems, activeItems, theme }) => {
                   <motion.img 
                     src="/assets/sdg2.png" 
                     alt="Logo" 
-                    className="w-8 h-8 rounded-lg shadow-md"
+                    className="w-10 h-10 rounded-xl shadow-lg"
                     whileHover={{ 
-                      scale: 1.1, 
-                      rotate: 360,
+                      scale: 1.05,
+                      rotate: 5,
                       transition: {
                         type: "spring",
                         stiffness: 400,
@@ -117,45 +110,39 @@ const MobileMenu = ({ isOpen, setIsOpen, menuItems, activeItems, theme }) => {
                       }
                     }}
                   />
-                  <motion.span 
-                    className={`font-semibold text-sm
-                      ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
-                    whileHover={{ 
-                      x: 3,
-                      transition: {
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 17
-                      }
-                    }}
+                  <motion.div 
+                    className="flex flex-col"
+                    whileHover={{ x: 3 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    SDG's Center Unsoed
-                  </motion.span>
+                    <span className={`font-semibold text-lg
+                      ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                      SDG's Center
+                    </span>
+                    <span className={`text-xs
+                      ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                      Universitas Jenderal Soedirman
+                    </span>
+                  </motion.div>
                 </Link>
+                
                 <motion.button
-                  whileHover={{ 
-                    scale: 1.1,
-                    transition: {
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 17
-                    }
-                  }}
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(false)}
-                  className={`p-2 rounded-xl transition-all duration-200
+                  className={`p-2 rounded-xl transition-colors
                     ${theme === 'dark'
                       ? 'text-gray-400 hover:text-white hover:bg-gray-800'
-                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'}
-                    active:shadow-inner`}
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'}`}
                 >
                   <X className="w-5 h-5" />
                 </motion.button>
               </div>
             </div>
 
+            {/* Navigation Items */}
             <motion.nav 
-              className="p-4 space-y-1"
+              className="p-4 space-y-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ 
                 opacity: 1, 
@@ -177,13 +164,23 @@ const MobileMenu = ({ isOpen, setIsOpen, menuItems, activeItems, theme }) => {
               ))}
             </motion.nav>
 
-            <div className={`p-4 mt-4 border-t
-              ${theme === 'dark' ? 'border-gray-800' : 'border-gray-200'}`}>
-              {/* <div className="flex items-center justify-between">
-                <LanguageSelector />
-                <ThemeToggle />
-              </div> */}
-            </div>
+            {/* Footer */}
+            <motion.div 
+              className={`p-4 mt-4 border-t
+                ${theme === 'dark' ? 'border-gray-800' : 'border-gray-200'}`}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: 1,
+                transition: { delay: 0.4 }
+              }}
+            >
+              <div className="text-center">
+                <p className={`text-xs
+                  ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                  © 2024 SDG's Center UNSOED
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         </>
       )}

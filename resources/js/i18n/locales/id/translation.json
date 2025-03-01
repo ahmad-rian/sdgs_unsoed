@@ -28,6 +28,11 @@
       "review": "Telaah Kritis",
       "journal": "Jurnal SDGs Unsoed"
     },
+    "media": {
+      "title": "Media",
+      "article": "Artikel",
+      "news": "Berita"
+    },
     "expert": "Pakar Kami"
   },
   "future": {
@@ -300,5 +305,207 @@
     
     "title": "Pakar Kami",
     "description": "Kenali tim ahli kami yang berdedikasi untuk tujuan pembangunan berkelanjutan."
-  }
+  },
+  "seminar": {
+      "title": "Seminar Pendidikan SDGs",
+      "description": "Bergabunglah dalam rangkaian seminar komprehensif kami yang dirancang untuk memperdalam pemahaman Anda tentang Tujuan Pembangunan Berkelanjutan (SDGs). Melalui diskusi interaktif dengan para ahli, akademisi, dan praktisi terkemuka, Anda akan mendapatkan wawasan berharga dan pengetahuan praktis untuk mengimplementasikan inisiatif pembangunan berkelanjutan.",
+      "highlights": {
+        "title": "Yang Akan Anda Dapatkan",
+        "experts": "Belajar langsung dari para ahli dan praktisi SDGs terkemuka dengan pengalaman nyata dalam pembangunan berkelanjutan",
+        "interactive": "Terlibat dalam diskusi dinamis dan workshop praktis yang membawa konsep SDGs menjadi nyata",
+        "insights": "Dapatkan wawasan mendalam tentang tantangan keberlanjutan global dan solusi inovatif",
+        "networking": "Terhubung dengan komunitas beragam profesional, akademisi, dan pembuat perubahan"
+      },
+      "topics": {
+        "title": "Topik Utama",
+        "sustainability": {
+          "title": "Dasar-dasar Pembangunan Berkelanjutan",
+          "description": "Kuasai prinsip dan praktik inti pembangunan berkelanjutan, termasuk pengelolaan lingkungan, keadilan sosial, dan viabilitas ekonomi"
+        },
+        "implementation": {
+          "title": "Strategi Implementasi SDGs",
+          "description": "Pelajari pendekatan praktis dan praktik terbaik untuk mengimplementasikan SDGs di berbagai sektor dan konteks organisasi"
+        },
+        "innovation": {
+          "title": "Inovasi untuk Keberlanjutan",
+          "description": "Jelajahi solusi mutakhir dan pendekatan inovatif untuk mengatasi tantangan pembangunan berkelanjutan"
+        }
+      }
+    },
+    "workshop": {
+      "title": "Workshop Praktis SDGs",
+      "description": "Workshop kami dirancang untuk memberikan keterampilan praktis dalam mendukung pencapaian SDGs. Melalui sesi interaktif, peserta belajar menerapkan solusi inovatif dan berkelanjutan di berbagai bidang, mulai dari energi terbarukan hingga pendidikan inklusif dan pemberdayaan ekonomi lokal.",
+      "focus": {
+        "title": "Area Fokus",
+        "renewable": {
+          "title": "Energi Terbarukan",
+          "description": "Pelajari pendekatan praktis untuk menerapkan solusi energi terbarukan dan pengelolaan sumber daya berkelanjutan"
+        },
+        "education": {
+          "title": "Pendidikan Inklusif",
+          "description": "Kembangkan strategi untuk menciptakan lingkungan dan program pendidikan inklusif yang tidak meninggalkan siapapun"
+        },
+        "economic": {
+          "title": "Pemberdayaan Ekonomi Lokal",
+          "description": "Kuasai teknik untuk memperkuat ekonomi lokal dan menciptakan peluang mata pencaharian berkelanjutan"
+        }
+      },
+      "methods": {
+        "title": "Pendekatan Kami",
+        "interactive": "Sesi pembelajaran praktis yang melibatkan peserta dalam pemecahan masalah dunia nyata",
+        "practical": "Fokus pada keterampilan praktis dan solusi yang dapat diterapkan segera",
+        "collaborative": "Aktivitas kelompok dan pembelajaran sebaya untuk meningkatkan berbagi pengetahuan dan jaringan",
+        "innovative": "Pengenalan alat dan metodologi inovatif untuk pembangunan berkelanjutan"
+        }
+      },
+      "course": {
+      "title": "Program Kursus SDGs",
+      "description": "Program kursus komprehensif kami menawarkan pembelajaran mendalam tentang SDGs melalui pendekatan teoretis dan praktis yang seimbang. Peserta mendapatkan pengetahuan yang luas dan mengeksplorasi studi kasus yang relevan untuk memahami tantangan dan peluang dalam mencapai tujuan pembangunan berkelanjutan.",
+      "approach": {
+        "title": "Pendekatan Pembelajaran",
+        "theoretical": "Fondasi teoretis yang kuat dalam prinsip dan kerangka kerja pembangunan berkelanjutan",
+        "practical": "Latihan praktis dan penerapan konsep SDG dalam dunia nyata",
+        "casestudies": "Analisis studi kasus yang relevan dari berbagai sektor dan wilayah",
+        "comprehensive": "Cakupan komprehensif dari semua 17 SDGs dan keterkaitannya"
+      },
+      "modules": {
+        "title": "Modul Kursus",
+        "foundations": {
+          "title": "Dasar-dasar SDG",
+          "description": "Pengenalan konsep pembangunan berkelanjutan, sejarah SDGs, dan kerangka kerja utama"
+        },
+        "implementation": {
+          "title": "Strategi Implementasi",
+          "description": "Pendekatan praktis untuk mengimplementasikan SDGs dalam berbagai konteks dan sektor"
+        },
+        "advanced": {
+          "title": "Aplikasi Lanjutan",
+          "description": "Topik khusus, tren yang berkembang, dan inovasi dalam pembangunan berkelanjutan"
+        }
+      },
+      "outcomes": {
+        "title": "Hasil Pembelajaran",
+        "knowledge": "Pemahaman mendalam tentang SDGs dan prinsip pembangunan berkelanjutan",
+        "skills": "Keterampilan praktis untuk mengimplementasikan dan mengukur kemajuan SDG",
+        "network": "Akses ke jaringan profesional dan ahli keberlanjutan",
+        "certification": "Sertifikasi profesional yang mengakui keahlian Anda dalam SDGs"
+      }
+    },
+
+    "others": {
+      "title": "Kegiatan Pendukung SDGs",
+      "description": "Berbagai kegiatan seperti kampanye sosial, program pengabdian masyarakat, dan proyek kolaboratif menjadi bagian integral dari upaya kami mendukung SDGs. Melalui aksi nyata, kami bertujuan menciptakan dampak positif bagi lingkungan dan masyarakat sambil mendorong keterlibatan aktif dalam mencapai pembangunan yang lebih inklusif dan berkelanjutan.",
+      "campaigns": {
+        "title": "Kampanye Sosial",
+        "awareness": {
+          "title": "Peningkatan Kesadaran",
+          "description": "Melakukan kampanye untuk meningkatkan kesadaran masyarakat tentang SDGs dan isu pembangunan berkelanjutan"
+        },
+        "engagement": {
+          "title": "Keterlibatan Masyarakat",
+          "description": "Melibatkan masyarakat melalui kegiatan partisipatif dan kampanye media sosial"
+        },
+        "impact": {
+          "title": "Penciptaan Dampak",
+          "description": "Merancang kampanye yang menciptakan dampak sosial dan lingkungan yang terukur"
+        },
+        "collaboration": {
+          "title": "Aksi Kolaboratif",
+          "description": "Bekerja sama dengan berbagai pemangku kepentingan untuk memperluas jangkauan dan efektivitas kampanye"
+        }
+      },
+      "community": {
+        "title": "Program Pengabdian Masyarakat",
+        "programs": {
+          "education": {
+            "title": "Jangkauan Pendidikan",
+            "description": "Mendukung inisiatif pendidikan di masyarakat kurang terlayani untuk mendorong pembelajaran inklusif"
+          },
+          "environment": {
+            "title": "Konservasi Lingkungan",
+            "description": "Melaksanakan program perlindungan lingkungan dan pengelolaan sumber daya berkelanjutan"
+          },
+          "empowerment": {
+            "title": "Pemberdayaan Masyarakat",
+            "description": "Memfasilitasi program yang memperkuat kapasitas masyarakat lokal untuk pembangunan berkelanjutan"
+          }
+        }
+      },
+      "projects": {
+        "title": "Proyek Kolaboratif",
+        "research": {
+          "title": "Penelitian Bersama",
+          "description": "Melakukan proyek penelitian kolaboratif dengan mitra akademik dan industri"
+        },
+        "innovation": {
+          "title": "Inisiatif Inovasi",
+          "description": "Mengembangkan solusi inovatif melalui kolaborasi multi-pemangku kepentingan"
+        },
+        "partnership": {
+          "title": "Kemitraan Strategis",
+          "description": "Membangun kemitraan dengan organisasi untuk meningkatkan dampak dan keberlanjutan proyek"
+        },
+        "impact": {
+          "title": "Penilaian Dampak",
+          "description": "Mengukur dan mengevaluasi hasil proyek untuk memastikan kontribusi bermakna terhadap SDGs"
+        }
+      }
+    },
+    "training": {
+      "title": "Program Pelatihan & Proyek",
+      "description": "Program pelatihan dan proyek kami dirancang untuk membekali masyarakat dengan keterampilan praktis dan solusi inovatif yang mendukung pencapaian SDGs. Melalui pendekatan berbasis aksi, peserta terlibat dalam proyek berkelanjutan yang menciptakan dampak langsung dalam pemberdayaan ekonomi lokal, pengelolaan lingkungan, dan peningkatan kualitas pendidikan.",
+      "programs": {
+        "title": "Program Pelatihan",
+        "economic": {
+          "title": "Pemberdayaan Ekonomi",
+          "description": "Mengembangkan keterampilan praktis untuk pengembangan ekonomi lokal, kewirausahaan, dan praktik bisnis berkelanjutan"
+        },
+        "environmental": {
+          "title": "Pengelolaan Lingkungan",
+          "description": "Mempelajari pendekatan efektif untuk konservasi lingkungan, pengelolaan sumber daya, dan praktik berkelanjutan"
+        },
+        "education": {
+          "title": "Peningkatan Pendidikan",
+          "description": "Menguasai teknik untuk meningkatkan kualitas pendidikan dan mengimplementasikan program pembelajaran inklusif"
+        }
+      },
+      "approach": {
+        "title": "Pendekatan Berbasis Aksi",
+        "handson": {
+          "title": "Pembelajaran Praktis",
+          "description": "Keterlibatan langsung dengan proyek dunia nyata dan implementasi praktis dari solusi"
+        },
+        "mentoring": {
+          "title": "Mentoring Ahli",
+          "description": "Bimbingan dari profesional berpengalaman selama pengembangan dan implementasi proyek"
+        },
+        "collaboration": {
+          "title": "Kolaborasi Masyarakat",
+          "description": "Bekerja sama dengan masyarakat lokal dan pemangku kepentingan untuk memastikan relevansi dan keberlanjutan proyek"
+        },
+        "impact": {
+          "title": "Fokus pada Dampak",
+          "description": "Penekanan pada penciptaan perubahan positif yang terukur dalam masyarakat sasaran"
+        }
+      },
+      "outcomes": {
+        "title": "Hasil Proyek",
+        "skills": "Peserta memperoleh keterampilan praktis dan pengalaman dalam mengimplementasikan inisiatif pembangunan berkelanjutan",
+        "projects": "Proyek masyarakat yang berhasil diselesaikan dengan dampak positif yang terukur",
+        "network": "Pengembangan jaringan yang kuat dan kemitraan dengan berbagai pemangku kepentingan",
+        "impact": "Perubahan positif jangka panjang dalam kesejahteraan masyarakat dan keberlanjutan lingkungan"
+      }
+    },
+    "student": {
+      "title": "Komunitas Mahasiswa",
+      "description": "Komunitas mahasiswa berperan aktif dalam mendukung SDGs melalui berbagai inisiatif sosial, edukasi, dan advokasi. Dengan semangat kolaborasi, mahasiswa dapat menciptakan gerakan positif yang berfokus pada isu-isu global seperti kesetaraan pendidikan, kesehatan masyarakat, dan pelestarian lingkungan, serta membangun jaringan yang berkontribusi pada pembangunan berkelanjutan."
+    },
+    "review": {
+      "title": "Telaah Kritis",
+      "description": "Publikasi berbasis telaah kritis berperan dalam mengupas isu-isu global yang berkaitan dengan SDGs melalui analisis mendalam dan perspektif akademis. Dengan pendekatan reflektif dan berbasis data, telaah kritis ini bertujuan untuk mengidentifikasi tantangan, mengevaluasi kebijakan, serta menawarkan solusi inovatif untuk mendukung pembangunan berkelanjutan."
+    },
+    "journal": {
+      "title": "Jurnal Ilmiah",
+      "description": "Publikasi jurnal ilmiah menjadi wadah penting dalam menyebarluaskan hasil penelitian yang berkontribusi pada pencapaian SDGs. Melalui kajian berbasis bukti dan metode ilmiah, jurnal ini mendukung pengembangan ilmu pengetahuan, kebijakan, dan praktik terbaik yang dapat diterapkan dalam berbagai sektor untuk mencapai tujuan pembangunan berkelanjutan."
+    }
  }

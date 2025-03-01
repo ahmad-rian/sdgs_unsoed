@@ -36,23 +36,12 @@ const DashboardLayout = ({ user, header, children }) => {
       badge: null
     },
     { 
-      name: 'Analytics', 
-      href: '#', 
-      icon: BarChart,
+      name: 'Berita', 
+      href: route('berita.index'), 
+      icon: Folder,   
       badge: null
     },
-    { 
-      name: 'Team', 
-      href: '#', 
-      icon: Users,
-      badge: 'New'
-    },
-    { 
-      name: 'Projects', 
-      href: '#', 
-      icon: Folder,
-      badge: null
-    },
+    
   ];
 
   const NavLink = ({ href, icon: Icon, active, children, badge }) => (
@@ -89,7 +78,7 @@ const DashboardLayout = ({ user, header, children }) => {
           <Link href="/" className="flex items-center gap-2">
             <div className="p-1.5 ">
             <img 
-                src="/assets/SDG's.png"  
+                src="/assets/sdg2.png"  
                 alt="SDGs Logo" 
                 className="w-6 h-6"     
             />
@@ -104,7 +93,7 @@ const DashboardLayout = ({ user, header, children }) => {
           </button>
         </div>
 
-        {/* Search */}
+        {/* Search
         <div className="p-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -mt-2.5 h-5 w-5 text-gray-400" />
@@ -114,7 +103,7 @@ const DashboardLayout = ({ user, header, children }) => {
               className="w-full pl-10 pr-4 py-2 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">

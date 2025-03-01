@@ -14,19 +14,19 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
 
   const getTextColor = () => {
     if (theme === 'dark') {
-      return isActive ? 'text-[#F5E6D3]' : 'text-gray-300';
+      return isActive ? 'text-blue-400' : 'text-gray-300';
     }
-    return isActive ? 'text-[#B94D4D]' : 'text-gray-800';
+    return isActive ? 'text-blue-600' : 'text-gray-800';
   };
 
   const getBackgroundColor = () => {
     if (theme === 'dark') {
-      return isActive ? 'bg-[#1B3A5B]/50' : 'hover:bg-[#1B3A5B]/30';
+      return isActive ? 'bg-blue-950/50' : 'hover:bg-gray-800/50';
     }
-    return isActive ? 'bg-[#B94D4D]/10' : 'hover:bg-[#B94D4D]/5';
+    return isActive ? 'bg-blue-50' : 'hover:bg-gray-50';
   };
 
-  if (item.href) {
+  if (item.href && !item.children) {
     return (
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -37,7 +37,7 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
         <Link
           href={item.href}
           onClick={onClose}
-          className={`flex items-center w-full px-4 py-3 text-sm rounded-lg
+          className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl
             ${getTextColor()} ${getBackgroundColor()} transition-all duration-300`}
         >
           {IconComponent && <IconComponent className="w-5 h-5 mr-3" />}
@@ -46,8 +46,7 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
         {isActive && (
           <motion.div
             layoutId="mobileIndicator"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full
-              ${theme === 'dark' ? 'bg-[#F5E6D3]' : 'bg-[#B94D4D]'}`}
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full bg-blue-500"
           />
         )}
       </motion.div>
@@ -63,8 +62,8 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center justify-between w-full px-4 py-3 text-sm rounded-lg
-          ${getTextColor()} ${getBackgroundColor()} transition-all duration-300`}
+        className={`flex items-center justify-between w-full px-4 py-3 text-sm font-medium
+          rounded-xl ${getTextColor()} ${getBackgroundColor()} transition-all duration-300`}
       >
         <span className="flex items-center">
           {IconComponent && <IconComponent className="w-5 h-5 mr-3" />}
@@ -82,8 +81,7 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
       {isActive && (
         <motion.div
           layoutId="mobileIndicator"
-          className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full
-            ${theme === 'dark' ? 'bg-[#F5E6D3]' : 'bg-[#B94D4D]'}`}
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full bg-blue-500"
         />
       )}
 
@@ -93,21 +91,26 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="pl-4 space-y-1 mt-1 overflow-hidden"
+            className="pl-4 space-y-1.5 mt-1 overflow-hidden"
           >
             {item.children.map((child) => {
               const ChildIcon = Icons[child.icon];
               const isChildActive = child.href === url;
               
               return (
-                <div key={child.name} className="relative">
+                <motion.div 
+                  key={child.name} 
+                  className="relative"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
                   <Link
                     href={child.href}
                     onClick={onClose}
-                    className={`flex items-center px-4 py-2 text-sm rounded-lg
+                    className={`flex items-center px-4 py-2.5 text-sm rounded-lg
                       ${theme === 'dark'
-                        ? isChildActive ? 'text-[#F5E6D3] bg-[#1B3A5B]/30' : 'text-gray-300 hover:text-[#F5E6D3] hover:bg-[#1B3A5B]/30'
-                        : isChildActive ? 'text-[#B94D4D] bg-[#B94D4D]/10' : 'text-gray-600 hover:text-[#B94D4D] hover:bg-[#B94D4D]/5'}
+                        ? isChildActive ? 'text-blue-400 bg-blue-950/50' : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                        : isChildActive ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}
                       transition-all duration-300`}
                   >
                     {ChildIcon && <ChildIcon className="w-4 h-4 mr-3" />}
@@ -116,11 +119,10 @@ const MobileNavItem = ({ item, onClose, index, theme }) => {
                   {isChildActive && (
                     <motion.div
                       layoutId="mobileDropdownIndicator"
-                      className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full
-                        ${theme === 'dark' ? 'bg-[#F5E6D3]' : 'bg-[#B94D4D]'}`}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-blue-500"
                     />
                   )}
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>

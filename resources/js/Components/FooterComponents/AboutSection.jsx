@@ -9,7 +9,7 @@ const AboutSection = ({ theme, t }) => (
       <div className="space-y-6">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl overflow-hidden bg-gradient-to-br from-[#0A2647] to-[#144272] p-2">
-            <img src="/assets/SDG's.png" alt="SDGs Logo" className="w-full h-full object-contain" />
+            <img src="/assets/sdg2.png" alt="SDGs Logo" className="w-full h-full object-contain" />
           </div>
           <div>
             <h3 className={`text-lg font-bold ${
@@ -41,8 +41,18 @@ const AboutSection = ({ theme, t }) => (
           />
           <ContactInfo 
             icon={Phone} 
-            text="+62 281 XXX XXX"
-            link="tel:+62281XXXXXX"
+            text="+62 812-2679-8679 ( Yemima )"
+            link="tel:+6281226798679"
+            className={`${
+              theme === 'dark' 
+                ? 'text-[#FFEFD6]/70 hover:text-[#FFEFD6]' 
+                : 'text-[#0A2647]/70 hover:text-[#0A2647]'
+            }`}
+          />
+          <ContactInfo 
+            icon={Phone} 
+            text="+62 858-9623-9634 ( Khaidar )"
+            link="tel:+625896239634"
             className={`${
               theme === 'dark' 
                 ? 'text-[#FFEFD6]/70 hover:text-[#FFEFD6]' 
