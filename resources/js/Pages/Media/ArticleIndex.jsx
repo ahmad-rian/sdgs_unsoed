@@ -7,8 +7,13 @@ import { useTranslation } from 'react-i18next';
 import Footer from '@/Components/Footer';
 import { format } from 'date-fns';
 
-// Enhanced ArticleCard with better hover effects
+// Enhanced ArticleCard with better hover effects and error handling
 const ArticleCard = ({ article, index }) => {
+  // Check if article exists and has required properties
+  if (!article) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -22,7 +27,7 @@ const ArticleCard = ({ article, index }) => {
         <div className="relative aspect-video overflow-hidden">
           <img
             src={article?.compressed_image ? `/storage/${article.compressed_image}` : (article?.image ? `/storage/${article.image}` : '/images/placeholder-article.jpg')}
-            alt={article.title}
+            alt={article?.title || "Article thumbnail"}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             onError={(e) => {
               e.target.src = 'https://placehold.co/600x400?text=Article';
@@ -33,7 +38,7 @@ const ArticleCard = ({ article, index }) => {
           {/* Reading time badge */}
           <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs font-medium px-2 py-0.5 rounded-full flex items-center">
             <Clock className="w-3 h-3 mr-1" />
-            {Math.max(1, Math.ceil(article.content.replace(/<[^>]*>?/gm, '').split(/\s+/).length / 200))} min
+            {Math.max(1, Math.ceil((article?.content || "").replace(/<[^>]*>?/gm, '').split(/\s+/).length / 200))} min
           </div>
         </div>
 
@@ -42,20 +47,20 @@ const ArticleCard = ({ article, index }) => {
           <div className="flex items-center gap-3 text-xs text-[#1B3A5B]/60 dark:text-[#F5E6D3]/60 mb-2">
             <div className="flex items-center gap-1">
               <Calendar className="w-3 h-3" />
-              <span>{format(new Date(article.created_at), 'MMM d, yyyy')}</span>
+              <span>{article?.created_at ? format(new Date(article.created_at), 'MMM d, yyyy') : format(new Date(), 'MMM d, yyyy')}</span>
             </div>
           </div>
           
           <h3 className="text-base font-semibold text-[#1B3A5B] dark:text-[#F5E6D3] mb-2 line-clamp-2 group-hover:text-[#B94D4D] transition-colors">
-            {article.title}
+            {article?.title || "Untitled Article"}
           </h3>
           
           <p className="text-[#1B3A5B]/70 dark:text-[#F5E6D3]/70 text-sm mb-3 line-clamp-2 flex-1">
-            {article.content.replace(/<[^>]*>?/gm, '')}
+            {(article?.content || "").replace(/<[^>]*>?/gm, '')}
           </p>
 
           <Link
-            href={route('media.article.show', article.id)}
+            href={route('media.article.show', article?.id || 0)}
             className="inline-flex items-center text-xs font-medium text-[#B94D4D] hover:text-[#943D3D] transition-colors mt-auto"
           >
             Baca selengkapnya
@@ -67,17 +72,29 @@ const ArticleCard = ({ article, index }) => {
   );
 };
 
-// Modern Auto-sliding featured articles carousel
-const ArticleCarousel = ({ articles }) => {
+// Modern Auto-sliding featured articles carousel with error handling
+const ArticleCarousel = ({ articles = [] }) => {
+  // Ensure articles is always an array
+  const safeArticles = Array.isArray(articles) ? articles : [];
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef(null);
-  const totalSlides = articles.length;
+  const totalSlides = safeArticles.length;
   const carouselRef = useRef(null);
+  
+  // Early return if there are no articles
+  if (totalSlides === 0) {
+    return (
+      <div className="relative overflow-hidden rounded-xl bg-gray-100 dark:bg-[#132A43] shadow-md p-8 text-center">
+        <p className="text-[#1B3A5B] dark:text-[#F5E6D3]">Tidak ada artikel tersedia</p>
+      </div>
+    );
+  }
 
   // Auto-slide effect
   useEffect(() => {
-    if (isAutoPlaying) {
+    if (isAutoPlaying && totalSlides > 1) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
       }, 6000); // Change slide every 6 seconds
@@ -92,12 +109,14 @@ const ArticleCarousel = ({ articles }) => {
 
   // Handle manual navigation
   const goToSlide = (index) => {
-    setCurrentIndex(index);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
+    if (index >= 0 && index < totalSlides) {
+      setCurrentIndex(index);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      setIsAutoPlaying(false);
+      setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
     }
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
   };
 
   const nextSlide = () => {
@@ -107,6 +126,9 @@ const ArticleCarousel = ({ articles }) => {
   const prevSlide = () => {
     goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
   };
+
+  // Get current article safely
+  const currentArticle = safeArticles[currentIndex] || {};
 
   // Progress bar for each slide
   const ProgressBar = ({ index }) => {
@@ -171,12 +193,12 @@ const ArticleCarousel = ({ articles }) => {
             className="absolute inset-0"
           >
             <img
-              src={articles[currentIndex]?.compressed_image 
-                ? `/storage/${articles[currentIndex].compressed_image}` 
-                : (articles[currentIndex]?.image 
-                  ? `/storage/${articles[currentIndex].image}` 
+              src={currentArticle?.compressed_image 
+                ? `/storage/${currentArticle.compressed_image}` 
+                : (currentArticle?.image 
+                  ? `/storage/${currentArticle.image}` 
                   : '/images/placeholder-article.jpg')}
-              alt={articles[currentIndex].title}
+              alt={currentArticle?.title || "Article image"}
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.src = 'https://placehold.co/1200x600?text=Article';
@@ -202,25 +224,31 @@ const ArticleCarousel = ({ articles }) => {
               </span>
               <div className="flex items-center gap-1">
                 <Calendar className="w-3 h-3" />
-                <span>{format(new Date(articles[currentIndex].created_at), 'MMM d, yyyy')}</span>
+                <span>
+                  {currentArticle?.created_at 
+                    ? format(new Date(currentArticle.created_at), 'MMM d, yyyy') 
+                    : format(new Date(), 'MMM d, yyyy')}
+                </span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-3 h-3" />
-                <span>{Math.max(1, Math.ceil(articles[currentIndex].content.replace(/<[^>]*>?/gm, '').split(/\s+/).length / 200))} min</span>
+                <span>
+                  {Math.max(1, Math.ceil((currentArticle?.content || "").replace(/<[^>]*>?/gm, '').split(/\s+/).length / 200))} min
+                </span>
               </div>
             </div>
             
             <h2 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2 line-clamp-2 max-w-2xl">
-              {articles[currentIndex].title}
+              {currentArticle?.title || "Untitled Article"}
             </h2>
             
             <p className="text-white/80 text-xs mb-2 max-w-lg line-clamp-1 hidden sm:block">
-              {articles[currentIndex].content.replace(/<[^>]*>?/gm, '').substring(0, 120)}
-              {articles[currentIndex].content.replace(/<[^>]*>?/gm, '').length > 120 ? '...' : ''}
+              {(currentArticle?.content || "").replace(/<[^>]*>?/gm, '').substring(0, 120)}
+              {(currentArticle?.content || "").replace(/<[^>]*>?/gm, '').length > 120 ? '...' : ''}
             </p>
             
             <Link
-              href={route('media.article.show', articles[currentIndex].id)}
+              href={route('media.article.show', currentArticle?.id || 0)}
               className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-xs font-medium rounded-md transition-colors"
             >
               Baca selengkapnya
@@ -230,38 +258,47 @@ const ArticleCarousel = ({ articles }) => {
         </AnimatePresence>
       </div>
       
-      {/* Navigation arrows */}
-      <button 
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white focus:outline-none opacity-0 md:opacity-70 hover:opacity-100 transition-opacity duration-300"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
+      {/* Navigation arrows - Only show if there are multiple slides */}
+      {totalSlides > 1 && (
+        <>
+          <button 
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white focus:outline-none opacity-0 md:opacity-70 hover:opacity-100 transition-opacity duration-300"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button 
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white focus:outline-none opacity-0 md:opacity-70 hover:opacity-100 transition-opacity duration-300"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </>
+      )}
       
-      <button 
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white focus:outline-none opacity-0 md:opacity-70 hover:opacity-100 transition-opacity duration-300"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
-      
-      {/* Progress indicators */}
-      <div className="absolute bottom-0 left-0 right-0 flex gap-1 p-2 px-4 sm:px-6 md:px-8">
-        {articles.map((_, index) => (
-          <ProgressBar key={index} index={index} />
-        ))}
-      </div>
+      {/* Progress indicators - Only show if there are multiple slides */}
+      {totalSlides > 1 && (
+        <div className="absolute bottom-0 left-0 right-0 flex gap-1 p-2 px-4 sm:px-6 md:px-8">
+          {safeArticles.map((_, index) => (
+            <ProgressBar key={index} index={index} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-// Improved ArticleIndex component
-const ArticleIndex = ({ articles, featured_article = null }) => {
+// Improved ArticleIndex component with error handling
+const ArticleIndex = ({ articles = { data: [] }, featured_article = null }) => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  
+  // Ensure articles.data is always an array
+  const articlesData = articles?.data || [];
   
   // Get top articles for carousel (including featured if available)
   const carouselArticles = [];
@@ -269,16 +306,16 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
     carouselArticles.push(featured_article);
   }
   // Add more articles to carousel if needed
-  const additionalArticles = articles.data.filter(a => 
-    featured_article ? a.id !== featured_article.id : true
+  const additionalArticles = articlesData.filter(a => 
+    featured_article ? a?.id !== featured_article?.id : true
   ).slice(0, featured_article ? 4 : 5);
   
   carouselArticles.push(...additionalArticles);
   
   // Filter articles based on search term
-  const filteredArticles = articles.data.filter(article => 
-    article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    article.content.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredArticles = articlesData.filter(article => 
+    article?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    article?.content?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -359,20 +396,20 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
                   {filteredArticles.map((article, index) => (
-                    <ArticleCard key={article.id} article={article} index={index} />
+                    <ArticleCard key={article?.id || index} article={article} index={index} />
                   ))}
                 </div>
                 
                 {/* Enhanced Pagination */}
-                {articles.links && articles.links.length > 3 && (
+                {articles?.links && articles.links.length > 3 && (
                   <div className="mt-8 flex justify-center">
                     <div className="flex flex-wrap justify-center gap-1.5">
                       {articles.links.map((link, key) => {
-                        let label = link.label;
+                        let label = link?.label || '';
                         if (label === '&laquo; Previous') label = '«';
                         if (label === 'Next &raquo;') label = '»';
                         
-                        return link.url === null ? (
+                        return !link?.url ? (
                           <span
                             key={key}
                             className="w-9 h-9 flex items-center justify-center text-xs text-gray-400 bg-gray-100 dark:bg-[#132A43]/50 dark:text-gray-500 rounded-md cursor-not-allowed"
