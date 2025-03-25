@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Head, Link } from '@inertiajs/react';
-import { motion } from 'framer-motion';
-import { Calendar, User, ArrowRight, Search, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, User, ArrowRight, Search, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import AppLayout from '@/Layouts/AppLayout';
 import { useTranslation } from 'react-i18next';
 import Footer from '@/Components/Footer';
@@ -67,24 +67,46 @@ const ArticleCard = ({ article, index }) => {
   );
 };
 
-// Auto-sliding featured articles carousel
+// Modern Auto-sliding featured articles carousel
 const ArticleCarousel = ({ articles }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef(null);
   const totalSlides = articles.length;
+  const carouselRef = useRef(null);
 
   // Auto-slide effect
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-    }, 5000); // Change slide every 5 seconds
+    if (isAutoPlaying) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
+      }, 6000); // Change slide every 6 seconds
+    }
     
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [totalSlides]);
+  }, [totalSlides, isAutoPlaying]);
+
+  // Handle manual navigation
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+  };
+
+  const nextSlide = () => {
+    goToSlide((currentIndex + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+  };
 
   // Progress bar for each slide
   const ProgressBar = ({ index }) => {
@@ -93,7 +115,7 @@ const ArticleCarousel = ({ articles }) => {
     useEffect(() => {
       let animationFrame;
       let startTime = null;
-      const duration = 5000; // Match with the interval time
+      const duration = 6000; // Match with the interval time
       
       const animate = (timestamp) => {
         if (!startTime) startTime = timestamp;
@@ -107,10 +129,10 @@ const ArticleCarousel = ({ articles }) => {
         }
       };
       
-      if (currentIndex === index) {
+      if (currentIndex === index && isAutoPlaying) {
         animationFrame = requestAnimationFrame(animate);
       } else {
-        setProgress(0);
+        setProgress(index === currentIndex ? 100 : 0);
       }
       
       return () => {
@@ -118,10 +140,15 @@ const ArticleCarousel = ({ articles }) => {
           cancelAnimationFrame(animationFrame);
         }
       };
-    }, [currentIndex, index]);
+    }, [currentIndex, index, isAutoPlaying]);
     
     return (
-      <div className="h-1 bg-white/20 rounded-full overflow-hidden flex-1">
+      <div 
+        className={`h-1 rounded-full overflow-hidden flex-1 cursor-pointer ${
+          index === currentIndex ? 'bg-white/30' : 'bg-white/10'
+        }`}
+        onClick={() => goToSlide(index)}
+      >
         <div 
           className="h-full bg-white rounded-full transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -131,56 +158,96 @@ const ArticleCarousel = ({ articles }) => {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-gray-100 dark:bg-[#132A43] shadow-sm">
-      {/* Slides container */}
-      <div 
-        className="relative flex transition-transform duration-700 ease-out aspect-[21/10] sm:aspect-[21/9] md:aspect-[21/8]"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {articles.map((article, index) => (
-          <div key={article.id} className="min-w-full h-full relative">
+    <div className="relative overflow-hidden rounded-xl bg-gray-100 dark:bg-[#132A43] shadow-md" ref={carouselRef}>
+      {/* Main Carousel with preferred height dimensions */}
+      <div className="relative aspect-[21/10] sm:aspect-[21/9] md:aspect-[21/8] overflow-hidden">
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
             <img
-              src={article?.compressed_image ? `/storage/${article.compressed_image}` : (article?.image ? `/storage/${article.image}` : '/images/placeholder-article.jpg')}
-              alt={article.title}
+              src={articles[currentIndex]?.compressed_image 
+                ? `/storage/${articles[currentIndex].compressed_image}` 
+                : (articles[currentIndex]?.image 
+                  ? `/storage/${articles[currentIndex].image}` 
+                  : '/images/placeholder-article.jpg')}
+              alt={articles[currentIndex].title}
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.src = 'https://placehold.co/1200x600?text=Article';
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            
-            <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 md:p-6">
-              <div className="flex items-center gap-3 text-xs text-white/80 mb-1 sm:mb-2">
-                <span className="bg-[#B94D4D] px-2 py-0.5 rounded-sm text-white text-xs">
-                  Artikel Ilmiah
-                </span>
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  <span>{format(new Date(article.created_at), 'MMM d, yyyy')}</span>
-                </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Content overlay */}
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={`content-${currentIndex}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="absolute inset-x-0 bottom-0 p-3 sm:p-4 md:p-6 z-10"
+          >
+            <div className="flex items-center gap-3 text-xs text-white/80 mb-1 sm:mb-2">
+              <span className="bg-[#B94D4D] px-2 py-0.5 rounded-sm text-white text-xs">
+                Artikel Ilmiah
+              </span>
+              <div className="flex items-center gap-1">
+                <Calendar className="w-3 h-3" />
+                <span>{format(new Date(articles[currentIndex].created_at), 'MMM d, yyyy')}</span>
               </div>
-              
-              <h2 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2 line-clamp-2">
-                {article.title}
-              </h2>
-              
-              <p className="text-white/80 text-xs mb-2 max-w-2xl line-clamp-1 hidden sm:block">
-                {article.content.replace(/<[^>]*>?/gm, '')}
-              </p>
-              
-              <Link
-                href={route('media.article.show', article.id)}
-                className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-xs font-medium rounded-md transition-colors"
-              >
-                Baca selengkapnya
-                <ArrowRight className="w-3 h-3 ml-1" />
-              </Link>
+              <div className="flex items-center gap-1">
+                <Clock className="w-3 h-3" />
+                <span>{Math.max(1, Math.ceil(articles[currentIndex].content.replace(/<[^>]*>?/gm, '').split(/\s+/).length / 200))} min</span>
+              </div>
             </div>
-          </div>
-        ))}
+            
+            <h2 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2 line-clamp-2 max-w-2xl">
+              {articles[currentIndex].title}
+            </h2>
+            
+            <p className="text-white/80 text-xs mb-2 max-w-lg line-clamp-1 hidden sm:block">
+              {articles[currentIndex].content.replace(/<[^>]*>?/gm, '').substring(0, 120)}
+              {articles[currentIndex].content.replace(/<[^>]*>?/gm, '').length > 120 ? '...' : ''}
+            </p>
+            
+            <Link
+              href={route('media.article.show', articles[currentIndex].id)}
+              className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-xs font-medium rounded-md transition-colors"
+            >
+              Baca selengkapnya
+              <ArrowRight className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1 duration-300" />
+            </Link>
+          </motion.div>
+        </AnimatePresence>
       </div>
       
-      {/* Slide indicators with progress */}
+      {/* Navigation arrows */}
+      <button 
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white focus:outline-none opacity-0 md:opacity-70 hover:opacity-100 transition-opacity duration-300"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      
+      <button 
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white focus:outline-none opacity-0 md:opacity-70 hover:opacity-100 transition-opacity duration-300"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+      
+      {/* Progress indicators */}
       <div className="absolute bottom-0 left-0 right-0 flex gap-1 p-2 px-4 sm:px-6 md:px-8">
         {articles.map((_, index) => (
           <ProgressBar key={index} index={index} />
@@ -194,6 +261,7 @@ const ArticleCarousel = ({ articles }) => {
 const ArticleIndex = ({ articles, featured_article = null }) => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   
   // Get top articles for carousel (including featured if available)
   const carouselArticles = [];
@@ -219,7 +287,7 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
 
       <main className="min-h-screen bg-gray-50 dark:bg-[#1B3A5B] pt-16">
         {/* Hero Section with Title */}
-        <section className="relative py-8 overflow-hidden">
+        <section className="relative py-8 overflow-hidden mt-14">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -241,18 +309,30 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <ArticleCarousel articles={carouselArticles} />
             
-            {/* Search Bar */}
+            {/* Enhanced Search Bar */}
             <div className="relative mt-6 max-w-xl mx-auto">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <div className={`absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none transition-opacity ${isSearchFocused ? 'opacity-100' : 'opacity-70'}`}>
                 <Search className="w-4 h-4 text-gray-400" />
               </div>
               <input
                 type="text"
-                className="w-full py-3 pl-10 pr-4 bg-white dark:bg-[#132A43] text-[#1B3A5B] dark:text-[#F5E6D3] rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-[#B94D4D] transition-all text-sm"
+                className="w-full py-3 pl-10 pr-4 bg-white dark:bg-[#132A43] text-[#1B3A5B] dark:text-[#F5E6D3] rounded-lg shadow-sm border border-transparent focus:border-[#B94D4D]/30 focus:outline-none focus:ring-1 focus:ring-[#B94D4D] transition-all text-sm"
                 placeholder="Cari artikel..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
               />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-[#B94D4D] transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
         </section>
@@ -283,10 +363,10 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
                   ))}
                 </div>
                 
-                {/* Simplified Pagination */}
+                {/* Enhanced Pagination */}
                 {articles.links && articles.links.length > 3 && (
                   <div className="mt-8 flex justify-center">
-                    <div className="flex flex-wrap justify-center gap-1">
+                    <div className="flex flex-wrap justify-center gap-1.5">
                       {articles.links.map((link, key) => {
                         let label = link.label;
                         if (label === '&laquo; Previous') label = '«';
@@ -295,7 +375,7 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
                         return link.url === null ? (
                           <span
                             key={key}
-                            className="w-8 h-8 flex items-center justify-center text-xs text-gray-400 bg-gray-100 dark:bg-[#132A43]/50 dark:text-gray-500 rounded cursor-not-allowed"
+                            className="w-9 h-9 flex items-center justify-center text-xs text-gray-400 bg-gray-100 dark:bg-[#132A43]/50 dark:text-gray-500 rounded-md cursor-not-allowed"
                             dangerouslySetInnerHTML={{
                               __html: label,
                             }}
@@ -304,10 +384,10 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
                           <Link
                             key={key}
                             href={link.url}
-                            className={`w-8 h-8 flex items-center justify-center text-xs rounded transition-colors ${
+                            className={`w-9 h-9 flex items-center justify-center text-xs rounded-md transition-all duration-200 ${
                               link.active
-                                ? 'bg-[#B94D4D] text-white'
-                                : 'text-[#1B3A5B] dark:text-[#F5E6D3]/70 bg-white dark:bg-[#132A43] hover:bg-gray-100 dark:hover:bg-[#1B3A5B]/70'
+                                ? 'bg-[#B94D4D] text-white shadow-sm shadow-[#B94D4D]/20'
+                                : 'text-[#1B3A5B] dark:text-[#F5E6D3]/70 bg-white dark:bg-[#132A43] hover:bg-gray-100 dark:hover:bg-[#1B3A5B]/70 hover:scale-105'
                             }`}
                             dangerouslySetInnerHTML={{
                               __html: label,
@@ -334,6 +414,32 @@ const ArticleIndex = ({ articles, featured_article = null }) => {
                 </button>
               </div>
             )}
+          </div>
+        </section>
+        
+        {/* Citation Guidelines Section */}
+        <section className="py-12 bg-[#1B3A5B]/5 dark:bg-[#132A43]/50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-3 text-center">
+                Pedoman Sitasi
+              </h2>
+              <p className="text-[#1B3A5B]/70 dark:text-[#F5E6D3]/70 mb-6 text-center">
+                Gunakan format berikut untuk mengutip artikel dari SDG's Center.
+              </p>
+              
+              <div className="bg-white dark:bg-[#132A43] p-4 rounded-lg shadow-sm border border-gray-100 dark:border-[#1B3A5B]/50">
+                <h3 className="font-medium text-[#1B3A5B] dark:text-[#F5E6D3] mb-2">Format APA</h3>
+                <p className="text-sm text-[#1B3A5B]/70 dark:text-[#F5E6D3]/70 mb-4 font-mono p-3 bg-gray-50 dark:bg-[#1B3A5B]/30 rounded border border-gray-100 dark:border-[#1B3A5B]">
+                  Penulis, A. A. (Tahun). Judul artikel. <em>SDG's Center Universitas Jenderal Soedirman</em>. URL
+                </p>
+                
+                <h3 className="font-medium text-[#1B3A5B] dark:text-[#F5E6D3] mb-2">Format MLA</h3>
+                <p className="text-sm text-[#1B3A5B]/70 dark:text-[#F5E6D3]/70 font-mono p-3 bg-gray-50 dark:bg-[#1B3A5B]/30 rounded border border-gray-100 dark:border-[#1B3A5B]">
+                  Penulis. "Judul Artikel." <em>SDG's Center Universitas Jenderal Soedirman</em>, Tahun, URL.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </main>

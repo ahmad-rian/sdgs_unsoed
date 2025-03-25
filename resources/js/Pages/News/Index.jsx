@@ -286,7 +286,7 @@ const News = ({ all_news, featured_news = null }) => {
               className="text-center max-w-3xl mx-auto mb-8"
             >
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] mb-5">
-                {t('news.title', 'Berita & Artikel Terbaru')}
+                {t('news.title', "Berita - SDG's Center Unsoed")}
               </h1>
               <p className="text-lg text-[#1B3A5B]/80 dark:text-[#F5E6D3]/80 leading-relaxed">
                 {t('news.description', 'Tetap terinformasi dengan berita terbaru, artikel, dan pembaruan tentang inisiatif dan proyek kami.')}

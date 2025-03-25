@@ -45,9 +45,9 @@ const Navbar = () => {
       className={`fixed top-0 w-full z-50 transition-all duration-300 border-b
         ${theme === 'dark' ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'}`}
     >
-      <nav className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+      <nav className="w-full px-4 py-2">
+        <div className="flex items-center justify-between space-x-4">
+          <div className="flex items-center space-x-3">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -60,22 +60,22 @@ const Navbar = () => {
               <Menu className="w-6 h-6" />
             </motion.button>
             
-            <Link href="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2">
               <motion.img 
                 src="/assets/sdg2.png" 
                 alt="SDGs Logo"
-                className="w-8 h-8"
+                className="w-6 h-6"
                 whileHover={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               />
-              <span className={`font-sans text-lg font-medium tracking-tight
+              <span className={`font-sans text-base font-semibold tracking-tight whitespace-nowrap mr-4
                 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                SDG's Center 
+                SDG's Center
               </span>
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center space-x-2">
             {menuItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -96,7 +96,7 @@ const Navbar = () => {
           </div>
 
           <motion.div 
-            className="flex items-center gap-4"
+            className="flex items-center space-x-2"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
