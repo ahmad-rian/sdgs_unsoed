@@ -51,7 +51,7 @@ const AboutUs = () => {
       <main className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#1B3A5B] dark:to-[#152A43] overflow-hidden">
         {/* Full Screen Hero Section with Mobile Navigation Adjustment */}
         <section 
-          className="relative flex items-center justify-center overflow-hidden pt-16 sm:pt-0"
+          className="relative flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-32"
           style={{ minHeight: windowHeight }}
         >
           {/* Dynamic Background with Parallax */}
@@ -76,7 +76,7 @@ const AboutUs = () => {
             {/* Hero Title with enhanced animation */}
             <motion.div
               {...fadeInUp}
-              className="text-center mb-12 lg:mb-20"
+              className="text-center mb-12 lg:mb-20 mt-12 sm:mt-16 md:mt-8"
             >
               <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-[#1B3A5B] dark:text-[#F5E6D3] tracking-tight leading-tight">
                 {t('about.us.title')}
