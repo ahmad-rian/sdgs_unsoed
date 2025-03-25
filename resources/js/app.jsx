@@ -3,7 +3,7 @@ import '../css/app.css';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ThemeProvider } from '@/contexts/ThemeContext';
+import { ThemeProvider } from '@/Contexts/ThemeContext';
 import ScrollToTop from '@/Components/ScrollToTop';
 import './i18n';
 
