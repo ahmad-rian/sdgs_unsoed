@@ -133,7 +133,7 @@ export default function Welcome({ auth }) {
         <SDGsGoalsSection/>
         <SDGsSection sdgs={sdgs} />
         <PartnershipSection />
-        <ProjectHighlightsSection />
+        {/* <ProjectHighlightsSection /> */}
         <Footer />
       </div>
     </AppLayout>
