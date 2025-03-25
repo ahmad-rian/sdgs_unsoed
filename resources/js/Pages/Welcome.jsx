@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import { useState, useEffect, useRef } from 'react';
 import { BookOpen, Users, Search, FileText } from 'lucide-react';
-import AppLayout from '@/layouts/AppLayout';
+import AppLayout from '@/Layouts/AppLayout';
 import HeroSection from '@/Components/sections/HeroSections';
 import FeaturesSection from '@/Components/sections/FeaturesSection';
 import SDGsSection from '@/Components/sections/SDGsSection';
