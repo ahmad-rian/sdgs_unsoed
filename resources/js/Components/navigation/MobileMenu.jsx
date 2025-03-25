@@ -177,7 +177,7 @@ const MobileMenu = ({ isOpen, setIsOpen, menuItems, theme }) => {
               <div className="text-center">
                 <p className={`text-xs
                   ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                  © 2024 SDG's Center UNSOED
+                   © {new Date().getFullYear()} Ahmad Rian S.R .
                 </p>
               </div>
             </motion.div>
