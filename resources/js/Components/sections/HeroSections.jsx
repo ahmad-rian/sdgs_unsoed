@@ -1,6 +1,6 @@
 import { useEffect, useState, memo } from "react"
 import { ArrowRight, Globe2, BookOpen, GraduationCap, Target, Award, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/Components/ui/button"
 import { Link } from '@inertiajs/react'
 
 // Optimized keyframes with hardware acceleration
