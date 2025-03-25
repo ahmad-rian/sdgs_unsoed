@@ -6,8 +6,8 @@ import { useTheme } from '@/Contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
 import ThemeToggle from './ThemeToggle';
-import NavItem from './Navigation/NavItem';
-import MobileMenu from './Navigation/MobileMenu';
+import NavItem from './navigation/NavItem';
+import MobileMenu from './navigation/MobileMenu';
 import getMenuItems from '@/Config/menuItems';
 
 const Navbar = () => {
