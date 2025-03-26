@@ -15,16 +15,40 @@ class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        // Tambahkan stateless untuk menghindari masalah session
+        // Simpan URL redirect di .env
+        $redirectUrl = config('services.google.redirect');
+        Log::info('Redirect URL yang digunakan', ['url' => $redirectUrl]);
+
+        return Socialite::driver('google')
+            ->stateless()
+            ->redirectUrl($redirectUrl)
+            ->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
         try {
             Log::info('Memulai Google callback');
+            Log::info('Parameters yang diterima:', $request->all());
+
+            // Cek apakah parameter code ada
+            if (!$request->has('code')) {
+                Log::error('Parameter code tidak ditemukan dalam request');
+                return redirect()->route('login')
+                    ->with('status', 'Terjadi kesalahan: Parameter otorisasi tidak ditemukan');
+            }
+
+            // Gunakan URL redirect yang sama dengan yang digunakan di redirectToGoogle
+            $redirectUrl = config('services.google.redirect');
+            Log::info('Callback URL yang digunakan', ['url' => $redirectUrl]);
 
             // Dapatkan data user dari Google
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            $googleUser = Socialite::driver('google')
+                ->stateless()
+                ->redirectUrl($redirectUrl)
+                ->user();
+
             Log::info('Data user dari Google', ['email' => $googleUser->email, 'name' => $googleUser->name]);
 
             // Periksa email dalam database
