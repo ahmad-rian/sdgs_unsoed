@@ -20,7 +20,6 @@ class AuthenticatedSessionController extends Controller
     public function create(): Response
     {
         return Inertia::render('Auth/Login', [
-            'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
         ]);
     }
@@ -30,11 +29,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Karena kita hanya ingin login dengan Google,
+        // kita redirect ke halaman Google auth
+        return redirect()->route('auth.google');
     }
 
     /**

@@ -15,6 +15,7 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\Auth\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,15 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])
+    ->name('auth.google');
+
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])
+    ->name('auth.google.callback');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 /*----------------------------------------------------------------------------------*/
 
