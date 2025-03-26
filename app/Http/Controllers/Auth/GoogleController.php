@@ -15,52 +15,79 @@ class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        // Tambahkan stateless untuk menghindari masalah session
-        // Simpan URL redirect di .env
-        $redirectUrl = config('services.google.redirect');
-        Log::info('Redirect URL yang digunakan', ['url' => $redirectUrl]);
+        try {
+            // Dapatkan redirect URL dari konfigurasi
+            $redirectUrl = config('services.google.redirect');
 
-        return Socialite::driver('google')
-            ->stateless()
-            ->redirectUrl($redirectUrl)
-            ->redirect();
+            // Log informasi untuk debugging
+            Log::info('Google OAuth redirect dimulai', [
+                'redirect_url' => $redirectUrl,
+                'app_url' => config('app.url')
+            ]);
+
+            // Gunakan URL redirect eksplisit dan mode stateless
+            return Socialite::driver('google')
+                ->stateless()
+                ->redirectUrl($redirectUrl)
+                ->with(['prompt' => 'select_account'])
+                ->scopes(['openid', 'profile', 'email'])
+                ->redirect();
+        } catch (\Exception $e) {
+            Log::error('Error saat redirect ke Google', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return redirect()->route('login')
+                ->with('status', 'Terjadi kesalahan saat menghubungkan ke Google: ' . $e->getMessage());
+        }
     }
 
     public function handleGoogleCallback(Request $request)
     {
         try {
-            Log::info('Memulai Google callback');
-            Log::info('Parameters yang diterima:', $request->all());
+            Log::info('Google callback dimulai', [
+                'query_params' => $request->all(),
+                'has_code' => $request->has('code'),
+                'has_error' => $request->has('error')
+            ]);
 
-            // Cek apakah parameter code ada
-            if (!$request->has('code')) {
-                Log::error('Parameter code tidak ditemukan dalam request');
+            // Periksa apakah ada kesalahan dalam response
+            if ($request->has('error')) {
+                Log::error('OAuth error dalam callback', [
+                    'error' => $request->get('error'),
+                    'error_description' => $request->get('error_description')
+                ]);
+
                 return redirect()->route('login')
-                    ->with('status', 'Terjadi kesalahan: Parameter otorisasi tidak ditemukan');
+                    ->with('status', 'Autentikasi Google gagal: ' . $request->get('error_description', 'Unknown error'));
             }
 
-            // Gunakan URL redirect yang sama dengan yang digunakan di redirectToGoogle
-            $redirectUrl = config('services.google.redirect');
-            Log::info('Callback URL yang digunakan', ['url' => $redirectUrl]);
+            // Periksa jika parameter code tidak ada
+            if (!$request->has('code')) {
+                Log::error('Parameter kode tidak ditemukan dalam callback');
+                return redirect()->route('login')
+                    ->with('status', 'Parameter otorisasi tidak ditemukan');
+            }
 
-            // Dapatkan data user dari Google
+            // Gunakan URL redirect yang sama
+            $redirectUrl = config('services.google.redirect');
+
+            // Dapatkan data user dari Google dengan URL redirect yang sama
             $googleUser = Socialite::driver('google')
                 ->stateless()
                 ->redirectUrl($redirectUrl)
                 ->user();
 
-            Log::info('Data user dari Google', ['email' => $googleUser->email, 'name' => $googleUser->name]);
+            Log::info('Data user dari Google berhasil diambil', [
+                'email' => $googleUser->email,
+                'name' => $googleUser->name
+            ]);
 
-            // Periksa email dalam database
+            // Proses lainnya sama seperti sebelumnya
             $email = $googleUser->email;
             $dbEmails = AllowedEmail::pluck('email')->toArray();
             $isAllowed = in_array($email, $dbEmails);
-
-            Log::info('Pengecekan email', [
-                'email' => $email,
-                'isAllowed' => $isAllowed,
-                'allowed_emails_in_db' => $dbEmails
-            ]);
 
             if (!$isAllowed) {
                 Log::warning('Email tidak diizinkan', ['email' => $email]);
@@ -68,39 +95,25 @@ class GoogleController extends Controller
                     ->with('status', 'Email tidak diizinkan untuk login.');
             }
 
-            // Cari user berdasarkan email saja untuk menghindari masalah
             $user = User::where('email', $email)->first();
 
-            Log::info('Pencarian user', [
-                'found' => (bool)$user,
-                'user_id' => $user ? $user->id : null
-            ]);
-
-            // Jika user belum ada, buat user baru
             if (!$user) {
-                Log::info('Membuat user baru');
                 $user = User::create([
                     'name' => $googleUser->name,
                     'email' => $email,
                     'google_id' => $googleUser->id,
                     'email_verified_at' => now()
                 ]);
-                Log::info('User baru dibuat', ['user_id' => $user->id]);
             } else {
-                // Update google_id jika user ditemukan
-                Log::info('Update user yang sudah ada');
                 $user->update([
                     'google_id' => $googleUser->id,
                     'email_verified_at' => now()
                 ]);
-                Log::info('User diupdate', ['user_id' => $user->id]);
             }
 
-            // Login
             Auth::login($user);
             Log::info('User berhasil login', ['user_id' => $user->id]);
 
-            // Redirect ke dashboard
             return redirect()->intended('/dashboard');
         } catch (\Exception $e) {
             Log::error('Error dalam Google callback', [
