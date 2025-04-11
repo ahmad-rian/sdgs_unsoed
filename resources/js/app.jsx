@@ -7,9 +7,6 @@ import { ThemeProvider } from '@/Contexts/ThemeContext';
 import ScrollToTop from '@/Components/ScrollToTop';
 import './i18n';
 
-// Import Head from Inertia for SEO
-import { Head } from '@inertiajs/react';
-
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
