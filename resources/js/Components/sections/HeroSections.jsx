@@ -38,7 +38,7 @@ document.head.appendChild(style)
 
 // Add preload link for images
 const preloadImages = () => {
-  const images = ['/assets/sdg1.png'];
+  const images = ['/assets/sdg1.webp'];
   images.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';
@@ -153,7 +153,7 @@ const Logo = memo(() => {
           />
           
           <img
-            src="/assets/sdg1.png"
+            src="/assets/sdg1.webp"
             alt="SDG's Center Logo"
             className={`absolute inset-0 w-full h-full object-contain transition-all duration-700
               ${isAnimating ? 'animate-float-gentle opacity-100 scale-100' : 'opacity-0 scale-95'}`}
