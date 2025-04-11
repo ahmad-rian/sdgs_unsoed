@@ -119,9 +119,9 @@ export default function Welcome({ auth }) {
   return (
     <AppLayout>
       <Head title="SDG's Center Unsoed - Sustainable Development Goals" />
-      
+
       <div className="min-h-screen">
-        <HeroSection 
+        <HeroSection
           currentSlide={currentSlide}
           slides={slides}
           handleMouseEnter={handleMouseEnter}
@@ -130,9 +130,9 @@ export default function Welcome({ auth }) {
           setCurrentSlide={setCurrentSlide}
         />
         <FeaturesSection features={features} />
-        <SDGsGoalsSection/>
+        <SDGsGoalsSection />
         <SDGsSection sdgs={sdgs} />
-        <PartnershipSection />
+        {/* <PartnershipSection /> */}
         {/* <ProjectHighlightsSection /> */}
         <Footer />
       </div>
