@@ -129,9 +129,10 @@ export default function Welcome({ auth }) {
           handleSlideChange={handleSlideChange}
           setCurrentSlide={setCurrentSlide}
         />
+        <SDGsSection sdgs={sdgs} />
         <FeaturesSection features={features} />
         <SDGsGoalsSection />
-        <SDGsSection sdgs={sdgs} />
+        
         {/* <PartnershipSection /> */}
         {/* <ProjectHighlightsSection /> */}
         <Footer />

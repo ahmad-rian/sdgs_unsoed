@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutSDGSController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ResearchController;
@@ -135,6 +136,9 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::post('berita/{berita}/restore', [BeritaController::class, 'restore'])->name('berita.restore');
     Route::delete('berita/{berita}/force-delete', [BeritaController::class, 'forceDelete'])->name('berita.force-delete');
+
+    //User Management Routes
+    Route::resource('users', UserController::class);
 });
 
 
